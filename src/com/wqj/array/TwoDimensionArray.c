@@ -38,6 +38,9 @@ void excutors(int a[][M], int b[][N], int alen, int blen) {
 
     for (int i = 0; i < alen; ++i) {
         for (int j = 0; j < N; ++j) {
+            /**
+             * 获取乘积
+             * */
             int temp = 0;
             for (int k = 0; k < M; ++k) {
                 temp += a[i][k] * b[k][j];
