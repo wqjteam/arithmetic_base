@@ -11,6 +11,7 @@ include_directories(header)
 set(CMAKE_C_STANDARD 99)
 
 add_executable(arithmetic_base main.c header/Bubble.h Bubble.c)
-add_executable(arithmetic_base_2 src/com/wqj/sort/array.c)
+add_executable(arithmetic_base_2 src/com/wqj/array/array.c)
 add_executable(arithmetic_base_3 src/com/wqj/sort/selectSort.c)
 add_executable(arithmetic_base_4 src/com/wqj/sort/BubbleSort.c)
+add_executable(arithmetic_base_5 src/com/wqj/array/TwoDimensionArray.c)
