@@ -5,6 +5,11 @@
 
 void excutors(int a[][M], int b[][N], int alen, int blen);
 
+/**
+ *
+ * 矩阵计算算法
+ *
+ * */
 int main() {
 
     int aArray[N][M] = {1, 2, 3, 4, 5, 6};
