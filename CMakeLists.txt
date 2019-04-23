@@ -1,0 +1,16 @@
+cmake_minimum_required(VERSION 3.13)
+project(arithmetic_base C)
+#添加自定义的header
+include_directories(header)
+#依次设置头文件目录、库目录、要链接的库
+#set(INC_DIR /Users/haoran/Downloads/wfdb/include)
+#set(LINK_DIR /Users/haoran/Downloads/wfdb/lib)
+#include_directories(${INC_DIR})
+#link_directories(${LINK_DIR})
+#link_libraries(wfdb)
+set(CMAKE_C_STANDARD 99)
+
+add_executable(arithmetic_base main.c header/Bubble.h Bubble.c)
+add_executable(arithmetic_base_2 src/com/wqj/sort/array.c)
+add_executable(arithmetic_base_3 src/com/wqj/sort/selectSort.c)
+add_executable(arithmetic_base_4 src/com/wqj/sort/BubbleSort.c)
