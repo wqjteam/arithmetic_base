@@ -21,6 +21,14 @@ void twodimension(int (*t)[4], int len);
 14     printf("&a[0][0] = %p.\n", &a[0][0]); // &a[0][0]类型是 int *
  */
 void main() {
+
+    int yi[] = {1, 2, 3, 4, 5};
+    int *yip = yi;
+    printf("一维输出结果是%d\n", *(yi + 1));
+    printf("一维输出结果是%d\n", *(yip + 1));
+    //证实  不可以直接给指针复制,只可以先初始化,然后嫁接到到新创建的指正上
+//    int *yip2={1,2,3,4,5};
+//    printf("一维输出结果2是%d\n",*(yip2+1));
     /**
      *
      * 使用二维数组
@@ -34,7 +42,7 @@ void main() {
     printf("输  出:%d\n", *(*(z1) + 2)); //f[0][2]
     printf("输  出:%d\n", *(*(z1 + 1) + 2)); //f[1][2]
     printf("输  出:%d\n", *(*(z1) + 2)); //f[0][2]
-    twodimension(z1,4);//twodimension(f,4);都行
+    twodimension(z1, 4);//twodimension(f,4);都行
 
     printf("\n");
 }
