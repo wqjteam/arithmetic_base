@@ -42,18 +42,18 @@ void main() {
     printf("输  出:%d\n", *(*(z1) + 2)); //f[0][2]
     printf("输  出:%d\n", *(*(z1 + 1) + 2)); //f[1][2]
     printf("输  出:%d\n", *(*(z1) + 2)); //f[0][2]
-    twodimension(z1, 4);//twodimension(f,4);都行
+    twodimension(z1, 3);//twodimension(f,4);都行
 
     printf("\n");
 }
 
 void twodimension(int (*t)[4], int len) {
-    for (int i = 0; i < 3; ++i) {
-        for (int j = 0; j < len; ++j) {
+    for (int i = 0; i < len; ++i) {
+        for (int j = 0; j < 4; ++j) {
             /**
              * 注意此获取方式
              * */
-            printf("%d", *(*(t + i)) + j);
+            printf("%d\t", *(*(t + i)) + j);
         }
         printf("\n");
     }
