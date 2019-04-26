@@ -9,7 +9,7 @@ void joinstr(int *a, int *b, int len, int *c);
 
 void orderArray(int *a, int len);
 
-void twodimension(char *t[6]);
+//void twodimension(char *t[6]);
 
 void main() {
     int a[] = {2, 1, 4, 3, 5};
@@ -54,16 +54,7 @@ void main() {
     printf("\n");
 
 
-    /**
-     *
-     * 使用二维数组
-     * */
-    int *f[3][4] = { {0, 1, 2, 3}, {4, 5, 6, 7}, {8, 9, 10, 11} };
-    int (*z)[4]=f;
-    printf("输出:%d\n", *f);
-    printf("输出:%c", *(*(z+1)+2));
-//    twodimension(z);
-    printf("\n");
+
 
 }
 
@@ -120,17 +111,3 @@ void orderArray(int *a, int len) {
 }
 
 
-void twodimension(char *t[6]) {
-    for (int i = 0; i < 6; ++i) {
-        int width = sizeof(*(t + i)) / sizeof(int);
-        for (int j = 0; j < width; ++j) {
-            /**
-             * 注意此获取方式
-             * */
-            printf("%c", *(*(t + i)) + j);
-        }
-        printf("\n");
-    }
-
-
-}
