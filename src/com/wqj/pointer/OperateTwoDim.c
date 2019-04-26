@@ -39,9 +39,10 @@ void main() {
     int (*z1)[4] = f;    //数组指正 指向数组名
     int *z2 = f[0];  //一般指针 指向f[0]第一行
     printf("一行有:%d列\n", sizeof(*f) / sizeof(int));
-    printf("输  出:%d\n", *(*(z1) + 2)); //f[0][2]
-    printf("输  出:%d\n", *(*(z1 + 1) + 2)); //f[1][2]
-    printf("输  出:%d\n", *(*(z1) + 2)); //f[0][2]
+    printf("*(*(z1) + 2输  出:%d\n", *(*(z1) + 2)); //f[0][2]
+    printf("z1[0][2]输  出:%d\n", z1[0][2]); //f[0][2]
+    printf("*(*(z1 + 1) + 2)输  出:%d\n", *(*(z1 + 1) + 2)); //f[1][2]
+    printf("*(*(z1) + 2)输  出:%d\n", *(*(z1) + 2)); //f[0][2]
     twodimension(z1, 3);//twodimension(f,4);都行
 
     printf("\n");
@@ -53,7 +54,7 @@ void twodimension(int (*t)[4], int len) {
             /**
              * 注意此获取方式
              * */
-            printf("%d\t", *(*(t + i)) + j);
+            printf("%d\t", t[i][j]);//printf("%d\t", *(*(t + i)) + j); 两种方式都可以
         }
         printf("\n");
     }
