@@ -1,9 +1,21 @@
 #include <stdio.h>
 #include "Bubble.h"
-int main() {
+/**
+ * ÔÚÊ¹ÓÃmainº¯ÊıµÄ´ø²Î°æ±¾µÄÊ±£¬×î³£ÓÃµÄ¾ÍÊÇ£ºint main(int argc , char* argv[]£©;
+ * ±äÁ¿Ãû³ÆargcºÍargvÊÇ³£¹æµÄÃû³Æ£¬µ±È»Ò²¿ÉÒÔ»»³ÉÆäËûÃû³Æ¡£
+ * ÃüÁîĞĞÖ´ĞĞµÄĞÎÊ½Îª£º¿ÉÖ´ĞĞÎÄ¼şÃû ²ÎÊı1 ²ÎÊı2 ¡­ ¡­ ²ÎÊın¡£¿ÉÖ´ĞĞÎÄ¼şÃû³ÆºÍ²ÎÊı¡¢²ÎÊıÖ®¼ä¾ùÊ¹ÓÃ¿Õ¸ñ¸ô¿ª
+ * */
+int main(int argc, char * argv[]) {
+    int i;
+    printf("Total %d arguments\n",argc);
+
+    for(i = 0; i < argc; i++)
+    {
+        printf("\nArgument argv[%d]  = %s \n",i, argv[i]);
+    }
 
     printf("Hello, World!\n");
-    printf("1111å“ˆå“ˆ\n");
-    printf("ç»“æœä¸º=%d\n",add(10,3));
+    printf("1111¹ş¹ş\n");
+    printf("½á¹ûÎª=%d\n",add(10,3));
     return 0;
 }
