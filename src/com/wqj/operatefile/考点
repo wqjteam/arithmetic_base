@@ -1,0 +1,6 @@
+1．文件的基本概念，包括文件类型指针FILE与文件的使用方式；
+2．文件的打开函数fopen与关闭函数fclose；
+3．文件的状态，包括feof函数和ferror函数；
+4．文件的读/写，包括fread和fwrite函数、fputc和fgetc函数、fgets与fputs函数的应用；
+5．文件的输入函数fscanf和输出函数fprintf的应用；
+6．文件的定位，包括rewind函数和fseek函数以及ftell函数的应用
