@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 int add(int a, int b) {
-    printf("璋冪敤浜哸dd鏂规硶");
+    printf("调用了add方法");
     if (a > b)
         return 0;
     else
