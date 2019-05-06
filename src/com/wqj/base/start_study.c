@@ -3,8 +3,8 @@ void h()
 {
     int a,b,c,sum;
     a=1,b=2;
-    scanf_s("%d",&c);
+    scanf("%d",&c);
     sum=a+b+c;
-    printf("Êä³ö½á¹û=%d\n",sum);
+    printf("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½=%d\n",sum);
 
 }

@@ -1,8 +1,9 @@
 #include <stdio.h>
-d()
+int powerV(int base, int num);
+int main()
 {
     int base, num;
-    scanf_s("%d %d", &base, &num);
+    scanf("%d %d", &base, &num);
     double b = powerV(base, num);
     printf("½á¹ûÎª%f", b);
 }

@@ -1,22 +1,21 @@
 #include <stdio.h>
-void e(int argc, char const *argv[])
-{
+
+void e(int argc, char const *argv[]) {
     /* code */
     int grade;
-    printf("ÇëÊä³ö³É¼¨:\n");
-	scanf_s("%d", &grade);
+    printf("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¼ï¿½:\n");
+    scanf("%d", &grade);
     // if(grade>60){
     //     printf("Pass%d\n",grade);
     // }else{
     //     printf("Fail%d\n",grade);
     // }
 
-    switch (grade)
-    {
-    case 60:
-        printf("¼°¸ñ");
-        break;
-    default:
-        printf("²»¼°¸ñ");
+    switch (grade) {
+        case 60:
+            printf("ï¿½ï¿½ï¿½ï¿½");
+            break;
+        default:
+            printf("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     }
 }
