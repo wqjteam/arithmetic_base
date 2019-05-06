@@ -5,7 +5,7 @@
  * 变量名称argc和argv是常规的名称，当然也可以换成其他名称。
  * 命令行执行的形式为：可执行文件名 参数1 参数2 … … 参数n。可执行文件名称和参数、参数之间均使用空格隔开
  * */
-int main(int argc, char * argv[]) {
+int main(int argc, char *argv[]) {
     int i;
     printf("Total %d arguments\n",argc);
 
