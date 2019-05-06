@@ -56,8 +56,8 @@ void main() {
 //    1)  结构体变量名.成员名
 //    2)  结构体指针名->成员名；
 //    3) (*结构体指针名).成员名；
-    printf("名字%c%c%c%c\n", s1.by.mon_name[0], s1.by.mon_name[1], s1.by.mon_name[2], s1.by.mon_name[3]);
-    printf("名字%c%c%c%c\n", d1_p->mon_name[0], d1_p->mon_name[1], d1_p->mon_name[2], d1_p->mon_name[3]);
+    printf("名字%s\n", s1.by.mon_name);
+    printf("名字%s\n", d1_p->mon_name);
 
     person per[3] = {{100, "XX", 'M', 18},
                      {100, "YY", 'F', 19},
