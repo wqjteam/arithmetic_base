@@ -11,7 +11,8 @@ int main(int argc, char *argv[]) {
 
     for(i = 0; i < argc; i++)
     {
-        printf("\nArgument argv[%d]  = %s \n",i, argv[i]);
+//        printf("\nArgument argv[%d]  = %s \n",i, argv[i]);
+        printf("\nArgument argv[%d]  = %s \n",i, *(argv++));
     }
 
     printf("Hello, World!\n");
