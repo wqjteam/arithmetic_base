@@ -39,10 +39,11 @@ int main(int argc, char *argv[]) {
  * */
     FILE *fp;
     if (argc == 1) {
-        filecopy(fp);
+        filecopy(stdin);
     } else {
         while (--argc == 1) {
-            if ((fp = fopen(*++argv, "r") == NULL)) {
+            fp = fopen(*(++argv), "r+");
+            if ((fp == NULL)) {
                 printf("出现了问题");
                 return 1;
             } else {
@@ -51,12 +52,14 @@ int main(int argc, char *argv[]) {
             }
         }
     }
+    return 0;
 
 }
 
 void filecopy(FILE *fp) {
     int c;
-    while ((c = getc(fp) != EOF))
-        putc(c, stdout);
+    while ((c = fgetc(fp) != EOF))
+        fputc(c, stdout);
+    fclose(fp);
 }
 
