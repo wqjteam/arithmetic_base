@@ -25,4 +25,5 @@ add_executable(arithmetic_base_12 src/com/wqj/c/operatefile/OperateFile.c)
 add_executable(arithmetic_base_13 src/com/wqj/c/operatefile/OperateFile2.c)
 add_executable(arithmetic_base_14 src/com/wqj/c/operatebit/BinaryOpertor.c)
 
-add_executable(arithmetic_base_15 src/com/wqj/c/operatebit/BinaryOpertor.c src/com/wqj/ds/basemath/LargestCommonDivisor.c)
+add_executable(arithmetic_base_15 src/com/wqj/ds/basemath/LargestCommonDivisor.c)
+add_executable(arithmetic_base_16 src/com/wqj/ds/basemath/LargestCommonDivisor.c)
