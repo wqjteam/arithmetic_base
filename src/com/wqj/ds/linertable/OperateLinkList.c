@@ -18,26 +18,27 @@ int main(int argc, char *argv[]) {
     /**
      * 创建内存LinkList
      * */
-    LinkList a = createLink(2);
+    LinkList a = createLink(4);
     /**
      * 在linklist前插入一个item
      * */
-    LinkList b = insertLink(2, 'c', a);
+    LinkList b = insertLink(3, 'c', a);
     printf("");
 }
 
 LinkList createLink(int n) {
-    LinkList p, r, list = NULL;
+    LinkList p, pre, list = NULL;
     for (int i = 1; i <= n; ++i) {
         p = (LinkList) malloc(sizeof(LNode));
         p->data = i;
         p->link = NULL;
         if (list == NULL) {
             list = p;
+            pre=list;
         } else {
-            list->link = p;
+            pre->link = p;
+            pre=p;
         }
-//        r = p;
     }
     return list;
 
