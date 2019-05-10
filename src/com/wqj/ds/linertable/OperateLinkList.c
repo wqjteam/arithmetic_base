@@ -4,6 +4,7 @@
  */
 #include <stdio.h>
 #include <malloc.h>
+#include <mem.h>
 
 typedef struct node {
     char data;
@@ -14,15 +15,25 @@ LinkList createLink(int n);
 
 LinkList insertLink(int num, char Item, LinkList list);
 
+LinkList deleteLink(int num, LinkList list);
+
+int deleteLinkByItem(char item, LinkList list);
+
 int main(int argc, char *argv[]) {
     /**
-     * åˆ›å»ºå†…å­˜LinkList
+     * ´´½¨ÄÚ´æLinkList
      * */
     LinkList a = createLink(4);
     /**
-     * åœ¨linklistå‰æ’å…¥ä¸€ä¸ªitem
+     * ÔÚlinklistÇ°²åÈëÒ»¸öitem
      * */
     LinkList b = insertLink(3, 'c', a);
+//    printf("");
+
+    LinkList c = deleteLink(3, a);
+//    printf("%s", c);
+
+    deleteLinkByItem('3', a);
     printf("");
 }
 
@@ -34,10 +45,10 @@ LinkList createLink(int n) {
         p->link = NULL;
         if (list == NULL) {
             list = p;
-            pre=list;
+            pre = list;
         } else {
             pre->link = p;
-            pre=p;
+            pre = p;
         }
     }
     return list;
@@ -52,24 +63,67 @@ LinkList insertLink(int num, char Item, LinkList list) {
         new = (LinkList) malloc(sizeof(LNode));
         new->data = Item;
         pre = temp;
-        //ç¬¬ä¸€ä¸ªä½ç½®
+        //µÚÒ»¸öÎ»ÖÃ
         if (num - 1 == 0) {
             new->link = list;
             list = new;
         }
-        //ä¸­é—´ä½ç½®
+        //ÖĞ¼äÎ»ÖÃ
         if (i == num - 1) {
-            new->link = temp->link;//listä¸å¸¦å‚æ•°æŒ‡çš„æ˜¯åœ°å€
+            new->link = temp->link;//list²»´ø²ÎÊıÖ¸µÄÊÇµØÖ·
             pre->link = new;
         } else {
             temp = temp->link;
         }
-        //æœ«å°¾
+        //Ä©Î²
 
 
     }
 
     return list;
 }
+
+
+LinkList deleteLink(int num, LinkList list) {
+    /**
+     * ¶¨Î»³öÎ»ÖÃ
+     * */
+    LinkList pretemp, nexttemp;
+    pretemp = list;
+    nexttemp = list;
+    //»ñÈ¡µ½ĞèÒªÉ¾³ıµÄÊı¾İ
+    for (int i = 1; i <= num-1; ++i) {
+        pretemp = nexttemp;
+        nexttemp = nexttemp->link;
+    }
+    pretemp->link = nexttemp->link;
+    return list;
+
+}
+
+int deleteLinkByItem(char item, LinkList list) {
+    /**
+     * ¶¨Î»³öÎ»ÖÃ
+     * */
+    LinkList pretemp, nexttemp;
+    pretemp = list;
+    nexttemp = list;
+    //»ñÈ¡µ½ĞèÒªÉ¾³ıµÄÊı¾İ
+    do {
+        /**
+         * ±éÀú³öÏàµÈnode
+         * */
+        if (nexttemp->data == item) {
+            pretemp->link = nexttemp->link;
+            return 1;
+        }
+        pretemp = nexttemp;
+        nexttemp = nexttemp->link;
+    } while (nexttemp == NULL);
+    return -1;
+
+}
+
+
 
 
