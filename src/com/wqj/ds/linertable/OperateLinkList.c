@@ -17,7 +17,11 @@ LinkList insertLink(int num, char Item, LinkList list);
 
 LinkList deleteLink(int num, LinkList list);
 
+int linkListLen(LinkList list);
+
 int deleteLinkByItem(char item, LinkList list);
+
+LinkList createCirculationLink(int n);
 
 int main(int argc, char *argv[]) {
     /**
@@ -33,8 +37,11 @@ int main(int argc, char *argv[]) {
     LinkList c = deleteLink(3, a);
 //    printf("%s", c);
 
-    deleteLinkByItem('3', a);
-    printf("");
+    deleteLinkByItem(3, a);
+    printf("长度:%d\n", linkListLen(a));
+
+    LinkList e = createCirculationLink(7);
+    printf("循环长度:%d\n", linkListLen(e));
 }
 
 LinkList createLink(int n) {
@@ -55,6 +62,28 @@ LinkList createLink(int n) {
 
 }
 
+/**
+ *  创建
+ * 循环
+ * 的list
+ * */
+LinkList createCirculationLink(int n) {
+    LinkList list = NULL, p, pre;
+    for (int i = 1; i <= n; ++i) {
+        p = (LinkList) malloc(sizeof(LNode));
+        p->data = i;
+        p->link = NULL;
+        if (list == NULL) {
+            list = p;
+            pre = list;
+        } else {
+            pre->link = p;
+            pre = p;
+        }
+    }
+    pre->link = list;
+    return list;
+}
 
 LinkList insertLink(int num, char Item, LinkList list) {
     LinkList pre, new, temp;
@@ -92,7 +121,7 @@ LinkList deleteLink(int num, LinkList list) {
     pretemp = list;
     nexttemp = list;
     //获取到需要删除的数据
-    for (int i = 1; i <= num-1; ++i) {
+    for (int i = 1; i <= num - 1; ++i) {
         pretemp = nexttemp;
         nexttemp = nexttemp->link;
     }
@@ -115,13 +144,25 @@ int deleteLinkByItem(char item, LinkList list) {
          * */
         if (nexttemp->data == item) {
             pretemp->link = nexttemp->link;
+
             return 1;
         }
         pretemp = nexttemp;
         nexttemp = nexttemp->link;
-    } while (nexttemp == NULL);
+    } while (nexttemp != NULL);
     return -1;
 
+}
+
+
+int linkListLen(LinkList list) {
+    LinkList p = list;
+    int len = 0;
+    do {
+        len++;
+        p = p->link;
+    } while ((p != NULL) && (p != list));
+    return len;
 }
 
 

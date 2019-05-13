@@ -29,4 +29,5 @@ add_executable(arithmetic_base_15 src/com/wqj/ds/basemath/LargestCommonDivisor.c
 add_executable(arithmetic_base_16 src/com/wqj/ds/linertable/OperateLiner.c)
 add_executable(arithmetic_base_17 src/com/wqj/ds/linertable/OperateLinkList.c)
 add_executable(arithmetic_base_18 src/com/wqj/c/test/TestC.c)
-add_executable(arithmetic_base_19 src/com/wqj/c/test/TestC.c)
+add_executable(arithmetic_base_19 src/com/wqj/ds/linertable/OperateDuplexingLinkList.c)
+add_executable(arithmetic_base_20 src/com/wqj/ds/linertable/OperateDuplexingLinkList.c)
