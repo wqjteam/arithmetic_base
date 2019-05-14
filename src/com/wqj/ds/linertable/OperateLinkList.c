@@ -25,6 +25,8 @@ LinkList createCirculationLink(int n);
 
 LinkList reverseLink(LinkList list);
 
+void printfLastKItem(LinkList list, int K);
+
 int main(int argc, char *argv[]) {
     /**
      * 创建内存LinkList
@@ -44,7 +46,9 @@ int main(int argc, char *argv[]) {
     LinkList e = createCirculationLink(7);
     printf("循环长度:%d\n", linkListLen(e));
 
-    LinkList f =reverseLink(a);
+    LinkList f = reverseLink(a);
+    printfLastKItem(f, 1);
+
 }
 
 LinkList createLink(int n) {
@@ -179,4 +183,24 @@ LinkList reverseLink(LinkList list) {
     }
 //    list = next;
     return next;
+}
+
+/**
+ * 打印最后
+ * K个元素
+ * */
+void printfLastKItem(LinkList list, int K) {
+    LinkList pre = list, next = list;
+    int i = 0;
+    while (pre != NULL) {
+        pre = pre->link;
+        if (++i > K) {
+            next = next->link;
+        }
+
+    }
+    while (next != NULL) {
+        printf("反转:%c\n", next->data);
+        next = next->link;
+    }
 }
