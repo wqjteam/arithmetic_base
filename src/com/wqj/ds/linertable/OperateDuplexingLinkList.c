@@ -16,6 +16,8 @@ DLinkList insertItem(DLinkList list, char base, char new);
 
 DLinkList deleteItem(DLinkList list, char base);
 
+DLinkList deleteRepetitionItem(DLinkList list);
+
 int main(int argc, char *argv[]) {
     //第一个参数是链表的长度,第二个参数是是否为循环
     DLinkList list = createDLinkList(5, 1);
@@ -86,8 +88,28 @@ DLinkList deleteItem(DLinkList list, char base) {
         if (temp->data == base) {
             temp->rlink->llink = temp->llink;
             temp->llink->rlink = temp->rlink;
-            free(temp);
+//            free(temp);
         }
         temp = temp->llink;
+    } while (temp != NULL && temp != list);
+}
+
+/**
+ * 删除重复
+ * 的数据
+ * */
+DLinkList deleteRepetitionItem(DLinkList list) {
+    DLinkList temp;
+    temp = list;
+    do {
+        if (temp->llink != NULL&&temp->data == temp->llink->data) {
+            //删除元素
+//            if () {
+                temp->llink = temp->llink->llink;
+                temp->llink->rlink = temp;
+//            }
+        } else {
+            temp = temp->llink;
+        }
     } while (temp != NULL && temp != list);
 }

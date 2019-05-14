@@ -23,6 +23,8 @@ int deleteLinkByItem(char item, LinkList list);
 
 LinkList createCirculationLink(int n);
 
+LinkList reverseLink(LinkList list);
+
 int main(int argc, char *argv[]) {
     /**
      * 创建内存LinkList
@@ -33,7 +35,6 @@ int main(int argc, char *argv[]) {
      * */
     LinkList b = insertLink(3, 'c', a);
 //    printf("");
-
     LinkList c = deleteLink(3, a);
 //    printf("%s", c);
 
@@ -42,6 +43,8 @@ int main(int argc, char *argv[]) {
 
     LinkList e = createCirculationLink(7);
     printf("循环长度:%d\n", linkListLen(e));
+
+    LinkList f =reverseLink(a);
 }
 
 LinkList createLink(int n) {
@@ -166,5 +169,14 @@ int linkListLen(LinkList list) {
 }
 
 
-
-
+LinkList reverseLink(LinkList list) {
+    LinkList pre = NULL, next = NULL;
+    while (list != NULL) {
+        pre = list->link;//记录当前节点的写一个节点地址
+        list->link = next;//当前节点指向下一个节点
+        next = list;//next记录当前节点,给下一个节点用
+        list = pre;//移动到下一个节点
+    }
+//    list = next;
+    return next;
+}
