@@ -9,12 +9,17 @@ void joinstr(int *a, int *b, int len, int *c);
 
 void orderArray(int *a, int len);
 
+int *createInt(int pre);
 //void twodimension(char *t[6]);
+
+
 
 void main() {
     int a[] = {2, 1, 4, 3, 5};
     int b[] = {6, 7, 8, 9, 10};
     int c[10];
+    int *pre;
+    pre = createInt(1);
 
     /**
      * 数组的名字就是下标为0的地址
@@ -52,8 +57,6 @@ void main() {
         printf("%d\t", *(a + i));
     }
     printf("\n");
-
-
 
 
 }
@@ -108,6 +111,14 @@ void orderArray(int *a, int len) {
         *(a + i) = *max;
         *max = temp;
     }
+
+}
+
+
+int *createInt(int pre) {
+    int *pres;
+    *pres = 111;
+    return pres;
 }
 
 
