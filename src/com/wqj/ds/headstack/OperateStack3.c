@@ -24,14 +24,14 @@ int PUSHLINK(LinkList *topss, char item);
 int POPLINK(LinkList *topss, char *item);
 
 int main(int argc, char *argv[]) {
-    LinkList top, v, linklist = NULL;
+    LinkList top=NULL, v, linklist = NULL;
     /**
      * linklist本身就是指针
      * */
     linklist = *createlinkList(3);
 
     v = (LinkList) malloc(sizeof(LNode));
-    top = (LinkList) malloc(sizeof(LNode));
+//    top = (LinkList) malloc(sizeof(LNode));
     v->data = 0;
     v->link = NULL;
 
