@@ -11,42 +11,63 @@ typedef struct node1 {
     struct node1 *link;
 } LNode, *LinkList;
 
+LinkList *createlinkList(int length);
 
-
-
-
-void INITIAL(LinkList top);
+int INITIAL(LinkList *topxx);
 
 int isEMPTYS(LinkList top);
 
-int PUSHLINK(LinkList topss, char item);
+int isEMPTYS(LNode *top);
 
-void test(int x, int z[], LinkList top);
+int PUSHLINK(LinkList *topss, char item);
+
+int POPLINK(LinkList *topss, char *item);
 
 int main(int argc, char *argv[]) {
     LinkList top, v, linklist = NULL;
-
     /**
      * linklist本身就是指针
      * */
     linklist = *createlinkList(3);
 
-
     v = (LinkList) malloc(sizeof(LNode));
     top = (LinkList) malloc(sizeof(LNode));
-    char z11;
-    printf("这是:%c\n", z11);
     v->data = 0;
     v->link = NULL;
-    INITIAL(top);
 
-    PUSHLINK(top, 'c');
-    PUSHLINK(top, 'z');
+    PUSHLINK(&top, 'c');
+    PUSHLINK(&top, 'z');
 
-    int x = 1;
-    int z[1] = {1};
-    test(x, z, v);
+    char *item;
+    char a = '0';
+    item = &a;
+    POPLINK(&top, item);
 
+}
+
+int INITIAL(LinkList *topxx) {
+    *topxx = NULL;
+    return 1;
+}
+
+
+int PUSHLINK(LinkList *topss, char item) {
+    LinkList temp;
+    temp = (LinkList) malloc(sizeof(LNode));
+    temp->data = item;
+    temp->link = *topss;
+    *topss = temp;
+    return 1;
+}
+
+int POPLINK(LinkList *topss, char *item) {
+    *item = (*topss)->data;
+    *topss = (*topss)->link;
+    return 1;
+}
+
+int isEMPTYS(LinkList top) {
+    top == NULL;
 }
 
 LinkList *createlinkList(int length) {
@@ -65,30 +86,5 @@ LinkList *createlinkList(int length) {
 
     } while (--length > 0);
     return &list;
-}
-
-
-
-void INITIAL(LinkList top) {
-    top = NULL;
-}
-
-int isEMPTYS(LinkList top) {
-    top == NULL;
-}
-
-int PUSHLINK(LinkList topss, char item) {
-    LinkList temp;
-    temp = (LinkList) malloc(sizeof(LNode));
-    temp->data = item;
-    temp->link = topss;
-    topss = temp;
-    return 1;
-}
-
-void test(int x, int z[], LinkList top) {
-    x = 8;
-    z[0] = 8;
-    top->data = '8';
 }
 
