@@ -36,9 +36,9 @@ int main(int argc, char *argv[]) {
     printf("递归循环值为:%d\n", calcFunction(2, 1));
     printf("非递归循环值为:%d\n", calcFunction2(2, 1));
 
-    char str[100] = "A*(B–C)/D+E";
-    convertOperate1(str, 11);
-    convertOperate2(str, 11);
+    char str[100] = "1+((2+3)*4)-5";
+    convertOperate1(str, 13);
+    convertOperate2(str, 13);
 }
 
 
@@ -239,25 +239,31 @@ void convertOperate1(char *t, int n) {
 //        }
 
         if (t[i] == ')') {
-            STACK2[++top2];
+            STACK2[++top2] = t[i];
         }
         if (t[i] == '(') {
             /**
              * 遇到 ( 就弹栈,
              * 直至遇到遇到)为止
              * */
-            char temp;
-            while (temp = STACK2[top2--] != ')') {
-                STACK1[++top1] = temp;
+            for (int j = top2; j > -1; j--) {
+                if (STACK2[top2] != ')') {
+                    STACK1[++top1] = STACK2[top2];
+                } else {
+                    top2--;
+                    break;
+                }
+                top2--;
             }
+
 
         }
         if (t[i] == '+' || t[i] == '-' || t[i] == '*' || t[i] == '/') {
-            STACK2[++top2];
+            STACK2[++top2] = t[i];
         }
         if (t[i] == '0' || t[i] == '1' || t[i] == '2' || t[i] == '3' ||
             t[i] == '4' || t[i] == '5' || t[i] == '6' || t[i] == '7' || t[i] == '8' || t[i] == '9') {
-            STACK1[++top1];
+            STACK1[++top1] = t[i];
         }
     }
 
@@ -304,25 +310,30 @@ void convertOperate2(char *t, int n) {
 
         if (t[i] == ')') {
             /**
-            * 遇到 ( 就弹栈,
-            * 直至遇到遇到)为止
-            * */
-            char temp;
-            while (temp = STACK2[top2--] != '(') {
-                STACK1[++top1] = temp;
+              * 遇到 )就弹栈,
+              * 直至遇到遇到(为止
+              * */
+            for (int j = top2; j > -1; j--) {
+                if (STACK2[top2] != '(') {
+                    STACK1[++top1] = STACK2[top2];
+                } else {
+                    top2--;
+                    break;
+                }
+                top2--;
             }
 
         }
         if (t[i] == '(') {
-            STACK2[++top2];
+            STACK2[++top2] = t[i];
 
         }
         if (t[i] == '+' || t[i] == '-' || t[i] == '*' || t[i] == '/') {
-            STACK2[++top2];
+            STACK2[++top2] = t[i];
         }
         if (t[i] == '0' || t[i] == '1' || t[i] == '2' || t[i] == '3' ||
             t[i] == '4' || t[i] == '5' || t[i] == '6' || t[i] == '7' || t[i] == '8' || t[i] == '9') {
-            STACK1[++top1];
+            STACK1[++top1] = t[i];
         }
     }
 
