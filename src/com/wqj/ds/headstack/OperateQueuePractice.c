@@ -24,6 +24,10 @@ int calcFunction(int m, int n);
 
 int calcFunction2(int m, int n);
 
+void convertOperate1(char *t, int n);
+
+void convertOperate2(char *t, int n);
+
 int main(int argc, char *argv[]) {
     int arr[M] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
     rightRomve2(arr, M, 3);
@@ -31,6 +35,10 @@ int main(int argc, char *argv[]) {
     conversion2(751);
     printf("递归循环值为:%d\n", calcFunction(2, 1));
     printf("非递归循环值为:%d\n", calcFunction2(2, 1));
+
+    char str[100] = "A*(B–C)/D+E";
+    convertOperate1(str, 11);
+    convertOperate2(str, 11);
 }
 
 
@@ -199,5 +207,139 @@ int calcFunction2(int m, int n) {
     (8) 依次弹出S2中的元素并输出，结果即为中缀表达式对应的前缀表达式
  *
  *
- *
+ *  A*(B–C)/D+E
+ *  ABC–*D/E+
  * */
+
+/**
+ *
+ * 中缀转前缀
+ * */
+void convertOperate1(char *t, int n) {
+    char STACK1[100], STACK2[100];
+    int top1 = -1, top2 = -1;
+    for (int i = n - 1; i >= 0; i--) {
+//        switch (t[i]){
+//            case '(':STACK2[++top2];break;
+//            case ')':STACK2[++top2];break;
+//            case '+':STACK2[++top2];break;
+//            case '-':STACK2[++top2];break;
+//            case '*':STACK2[++top2];break;
+//            case '/':STACK2[++top2];break;
+//            case '0':STACK1[++top1];break;
+//            case '1':STACK1[++top1];break;
+//            case '2':STACK1[++top1];break;
+//            case '3':STACK1[++top1];break;
+//            case '4':STACK1[++top1];break;
+//            case '5':STACK1[++top1];break;
+//            case '6':STACK1[++top1];break;
+//            case '7':STACK1[++top1];break;
+//            case '8':STACK1[++top1];break;
+//            case '9':STACK1[++top1];break;
+//        }
+
+        if (t[i] == ')') {
+            STACK2[++top2];
+        }
+        if (t[i] == '(') {
+            /**
+             * 遇到 ( 就弹栈,
+             * 直至遇到遇到)为止
+             * */
+            char temp;
+            while (temp = STACK2[top2--] != ')') {
+                STACK1[++top1] = temp;
+            }
+
+        }
+        if (t[i] == '+' || t[i] == '-' || t[i] == '*' || t[i] == '/') {
+            STACK2[++top2];
+        }
+        if (t[i] == '0' || t[i] == '1' || t[i] == '2' || t[i] == '3' ||
+            t[i] == '4' || t[i] == '5' || t[i] == '6' || t[i] == '7' || t[i] == '8' || t[i] == '9') {
+            STACK1[++top1];
+        }
+    }
+
+    /**
+     * 循环遍历之后
+     * 再清空stack2中的运算符
+     * */
+    while (top2 > -1) {
+        STACK1[++top1] = STACK2[top2--];
+    }
+
+    printf("\n前缀运算:");
+    while (top1 > -1) {
+        printf("%c", STACK1[top1--]);
+    }
+}
+
+/**
+ *
+ * 中缀转后缀
+ * */
+void convertOperate2(char *t, int n) {
+    char STACK1[100], STACK2[100];
+    int top1 = -1, top2 = -1;
+    for (int i = 0; i < n; i++) {
+//        switch (t[i]){
+//            case '(':STACK2[++top2];break;
+//            case ')':STACK2[++top2];break;
+//            case '+':STACK2[++top2];break;
+//            case '-':STACK2[++top2];break;
+//            case '*':STACK2[++top2];break;
+//            case '/':STACK2[++top2];break;
+//            case '0':STACK1[++top1];break;
+//            case '1':STACK1[++top1];break;
+//            case '2':STACK1[++top1];break;
+//            case '3':STACK1[++top1];break;
+//            case '4':STACK1[++top1];break;
+//            case '5':STACK1[++top1];break;
+//            case '6':STACK1[++top1];break;
+//            case '7':STACK1[++top1];break;
+//            case '8':STACK1[++top1];break;
+//            case '9':STACK1[++top1];break;
+//        }
+
+        if (t[i] == ')') {
+            /**
+            * 遇到 ( 就弹栈,
+            * 直至遇到遇到)为止
+            * */
+            char temp;
+            while (temp = STACK2[top2--] != '(') {
+                STACK1[++top1] = temp;
+            }
+
+        }
+        if (t[i] == '(') {
+            STACK2[++top2];
+
+        }
+        if (t[i] == '+' || t[i] == '-' || t[i] == '*' || t[i] == '/') {
+            STACK2[++top2];
+        }
+        if (t[i] == '0' || t[i] == '1' || t[i] == '2' || t[i] == '3' ||
+            t[i] == '4' || t[i] == '5' || t[i] == '6' || t[i] == '7' || t[i] == '8' || t[i] == '9') {
+            STACK1[++top1];
+        }
+    }
+
+    /**
+     * 循环遍历之后
+     * 再清空stack2中的运算符
+     * */
+    while (top2 > -1) {
+        STACK1[++top1] = STACK2[top2--];
+    }
+
+    printf("\n后缀运算:");
+    while (top1 > -1) {
+        printf("%c", STACK1[top1--]);
+    }
+}
+
+
+
+
