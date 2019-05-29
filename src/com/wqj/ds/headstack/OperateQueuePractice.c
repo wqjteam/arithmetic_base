@@ -28,6 +28,8 @@ void convertOperate1(char *t, int n);
 
 void convertOperate2(char *t, int n);
 
+int getPrior(char operate);
+
 int main(int argc, char *argv[]) {
     int arr[M] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
     rightRomve2(arr, M, 3);
@@ -283,30 +285,15 @@ void convertOperate1(char *t, int n) {
 
 /**
  *
- * 中缀转后缀
+ * 中缀转后缀,
+ * 与前缀不同的是
+ * 后缀如果同级别需要弹栈
+ *
  * */
 void convertOperate2(char *t, int n) {
     char STACK1[100], STACK2[100];
     int top1 = -1, top2 = -1;
     for (int i = 0; i < n; i++) {
-//        switch (t[i]){
-//            case '(':STACK2[++top2];break;
-//            case ')':STACK2[++top2];break;
-//            case '+':STACK2[++top2];break;
-//            case '-':STACK2[++top2];break;
-//            case '*':STACK2[++top2];break;
-//            case '/':STACK2[++top2];break;
-//            case '0':STACK1[++top1];break;
-//            case '1':STACK1[++top1];break;
-//            case '2':STACK1[++top1];break;
-//            case '3':STACK1[++top1];break;
-//            case '4':STACK1[++top1];break;
-//            case '5':STACK1[++top1];break;
-//            case '6':STACK1[++top1];break;
-//            case '7':STACK1[++top1];break;
-//            case '8':STACK1[++top1];break;
-//            case '9':STACK1[++top1];break;
-//        }
 
         if (t[i] == ')') {
             /**
@@ -328,8 +315,31 @@ void convertOperate2(char *t, int n) {
             STACK2[++top2] = t[i];
 
         }
+
+        /**
+         * 需要特别处理,
+         * 操作符需要比较
+         * 可能会弹栈
+         * */
         if (t[i] == '+' || t[i] == '-' || t[i] == '*' || t[i] == '/') {
-            STACK2[++top2] = t[i];
+            /**
+             * 遇到 )就弹栈,
+             * 直至遇到遇到(为止
+             * */
+            for (int j = top2; j >= -1; j--) {
+                /**
+                 * 如果优先级小于等于栈内的
+                 * 栈内的元素弹出
+                 * */
+//                t[i];
+                if (top2!=-1&&getPrior(STACK2[top2]) != 3 && getPrior(t[i]) <= getPrior(STACK2[top2])) {
+                    STACK1[++top1] = STACK2[top2--];
+                } else {
+                    STACK2[++top2] = t[i];
+                    break;
+                }
+            }
+
         }
         if (t[i] == '0' || t[i] == '1' || t[i] == '2' || t[i] == '3' ||
             t[i] == '4' || t[i] == '5' || t[i] == '6' || t[i] == '7' || t[i] == '8' || t[i] == '9') {
@@ -346,11 +356,33 @@ void convertOperate2(char *t, int n) {
     }
 
     printf("\n后缀运算:");
-    while (top1 > -1) {
-        printf("%c", STACK1[top1--]);
+    for (int k = 0; k <= top1; ++k) {
+
+        printf("%c", STACK1[k]);
     }
 }
 
+
+/**
+ * 获取优先级
+ * */
+int getPrior(char operate) {
+    switch (operate) {
+        case '+':
+            return 1;
+        case '-':
+            return 1;
+        case '*':
+            return 2;
+        case '/':
+            return 2;
+        case '(':
+            return 3;
+        case ')':
+            return 4;
+
+    }
+}
 
 
 
