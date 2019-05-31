@@ -33,3 +33,7 @@ add_executable(arithmetic_base_19 src/com/wqj/ds/linertable/OperateDuplexingLink
 add_executable(arithmetic_base_20 src/com/wqj/ds/headstack/OperateStack.c)
 add_executable(arithmetic_base_21 src/com/wqj/ds/headstack/OperateStack2.c)
 add_executable(arithmetic_base_22 src/com/wqj/ds/headstack/OperateStack3.c)
+add_executable(arithmetic_base_23 src/com/wqj/ds/headstack/OperateQueue.c )
+add_executable(arithmetic_base_24 src/com/wqj/ds/headstack/OperateQueuePractice.c)
+add_executable(arithmetic_base_25 src/com/wqj/ds/tree/OperateTree.c)
+add_executable(arithmetic_base_26 src/com/wqj/ds/headstack/OperateLinkQueue.c)
