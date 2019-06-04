@@ -4,6 +4,7 @@
  */
 #include <stdio.h>
 #include <malloc.h>
+#include "TraverseTree.c"
 
 /**
  *
@@ -15,19 +16,41 @@ typedef struct TreeNode {
 } BiNode, *BiTree;
 
 typedef struct TreeNodeLocal {
-    struct TreeNode *address;
-    int local;
-} STACK;
+    BiTree data;
+    struct TreeNodeLocal *next;
+} LinkNode,*LinkList;
 
-int Treedeep(BiTree *tree);
+int Treedeep(BiTree tree);
 
 int initRootTree(BiTree *tree, int value);
 
-int createBinTree(int *value, int n);
+BiTree createBinTree(int *value, int n);
+
+int hierarchyNumber(BiTree tree, int level,int *num);
+
+int hierarchyNumber2(BiTree tree, int level);
+
+int enqueue(LinkList *list,BiTree value);
+
+BiTree dequeue(LinkList *list);
+
+int preOrder(BiTree tree);
+
+
 
 int main(int argc, char *argv[]) {
 
+    int arr[10] = {1, 2, 3, 4,5,6,7,8};
 
+    int *arr2 = (int *) malloc(sizeof(int) * 10);
+    for (int i = 0; i < 10; ++i) {
+        arr2[i] = i;
+    }
+    int arr3[100] = {0};
+    BiTree tree = createBinTree(arr, 8);
+    int a=Treedeep(tree);
+    int b=hierarchyNumber(tree, 2,NULL);
+    int c=hierarchyNumber2(tree, 2);
 }
 
 
@@ -48,7 +71,7 @@ int initRootTree(BiTree *tree, int value) {
 /**
  * 从无到有创建一个完全tree
  * */
-int createBinTree(int *value, int n) {
+BiTree createBinTree(int *value, int n) {
 
     /**
      * 不排序,先填充左边,再填充右边
@@ -72,63 +95,125 @@ int createBinTree(int *value, int n) {
      * 先申请足够的内存,
      * 存放完全二叉树
      * */
-    BiTree *tree = (BiTree) malloc(sizeof(BiNode) * n);
+    BiNode *tree = (BiNode *) malloc(sizeof(BiNode) * n);
     for (int i = 0; i < n; ++i) {
-        tree[i]->data = value[i];
-        tree[i]->left = NULL;
-        tree[i]->right = NULL;
+
+        tree[i].data = value[i];
+        tree[i].left = NULL;
+        tree[i].right = NULL;
     }
     for (int j = 0; j <= n / 2 - 1; ++j) {
         if (2 * j + 1 <= n - 1) {
-            tree[j]->left = tree[2 * j + 1];
+            tree[j].left = &tree[2 * j + 1];
         }
         if (2 * j + 2 <= n - 1) {
-            tree[j]->right = tree[2 * j + 2];
+            tree[j].right = &tree[2 * j + 2];
         }
     }
 
-
+    return tree;
 }
 
 /**
    * 对于完全二叉树
    * 遍历出深度
    * */
-int Treedeep(BiTree *tree) {
-    int count = 0;
-    if ((*tree) == NULL) {
-        return count;
-    }
-    BiTree temp;
-    do {
-        count++;
-        temp = (*tree)->left;
-    } while (temp != NULL);
-    return count;
+int Treedeep(BiTree tree) {
+        if(NULL==tree){
+            return 0;
+        }else{
+            int lh=Treedeep(tree->left);
+            int rh=Treedeep(tree->right);
+            return (lh>rh)?(lh+1):(rh+1);
+        }
 }
 
-int hierarchyNumber(BiTree tree, int *ln) {
-    BiTree temp;
-    STACK *stack = (STACK *) malloc(sizeof(struct TreeNodeLocal) * 1000);
-    int top = -1;
-    temp = tree;
-    while (tree != NULL) {
-        if (temp->left != NULL) {
-            stack[++top];
-            stack[top].address = temp->left;
-            stack[top].local = 0;
-            temp = temp->left;
-        } else if (temp->right != NULL) {
-            stack[++top];
-            stack[top].address = temp->right;
-            stack[top].local = 1;
-            temp = temp->right;
-        } else if (temp->right == NULL && temp->left == NULL) {
-            /**
-             * levelnumber加一
-             * */
-            ln[top]++;
-            temp = stack[--top].address;
-        }
+
+int Treedeep2(BiTree tree) {
+    if(NULL==tree){
+        return 0;
+    }else{
+        int lh=Treedeep(tree->left);
+        int rh=Treedeep(tree->right);
+        return (lh>rh)?(lh+1):(rh+1);
     }
 }
+
+int hierarchyNumber(BiTree tree, int level,int *num) {
+    if(num==NULL){
+        int t=0;
+        num=&t;
+    }
+    if(tree==NULL){
+        return 0;
+    }
+    if(level==1){
+        (*num)++;
+    }
+    hierarchyNumber(tree->right,level-1,num);
+    hierarchyNumber(tree->left,level-1,num);
+    return *num;
+}
+
+int hierarchyNumber2(BiTree tree, int level) {
+    /**
+     * 初始化当前节点个数，及下一行节点个数
+     * 根节点所在层数为1
+     * */
+    int curcount=1,nextcount=0,count=1;
+    LinkList list=NULL;
+    BiTree temp;
+    enqueue(&list,tree);
+    while(list!=NULL){
+        temp=dequeue(&list);
+        curcount--;
+        if(temp->right!=NULL){
+            enqueue(&list,temp->right);
+            nextcount++;
+        }
+        if(temp->left!=NULL){
+            enqueue(&list,temp->left);
+            nextcount++;
+        }
+        if(curcount==0){
+            count++;
+            if(level==count){
+              return  nextcount;
+            }
+            /**
+             * 记录下一层需要
+             * 先遍历的数据
+             * */
+            curcount=nextcount;
+            nextcount=0;
+        }
+    }
+    return 0;
+}
+
+int enqueue(LinkList *list,BiTree value){
+    LinkList temp2=(LinkList)malloc(sizeof(LinkNode));
+    temp2->next=NULL;
+    temp2->data=value;
+    if(*list==NULL){
+        *list=temp2;
+    }else{
+        /**
+         * 循环渠道最后一个节点
+         * */
+        LinkList temp;
+        temp=*list;
+     while(temp->next!=NULL){
+         temp=temp->next;
+     }
+        temp->next=temp2;
+    }
+}
+
+BiTree dequeue(LinkList *list){
+    BiTree temp=(*list)->data;
+    (*list)=(*list)->next;
+    return temp;
+}
+
+
