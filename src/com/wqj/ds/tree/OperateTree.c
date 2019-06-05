@@ -4,38 +4,7 @@
  */
 #include <stdio.h>
 #include <malloc.h>
-#include "TraverseTree.c"
-
-/**
- *
- * */
-typedef struct TreeNode {
-    int data;
-    struct TreeNode *left;
-    struct TreeNode *right;
-} BiNode, *BiTree;
-
-typedef struct TreeNodeLocal {
-    BiTree data;
-    struct TreeNodeLocal *next;
-} LinkNode,*LinkList;
-
-int Treedeep(BiTree tree);
-
-int initRootTree(BiTree *tree, int value);
-
-BiTree createBinTree(int *value, int n);
-
-int hierarchyNumber(BiTree tree, int level,int *num);
-
-int hierarchyNumber2(BiTree tree, int level);
-
-int enqueue(LinkList *list,BiTree value);
-
-BiTree dequeue(LinkList *list);
-
-int preOrder(BiTree tree);
-
+#include "OperateTree.h"
 
 
 int main(int argc, char *argv[]) {
@@ -51,11 +20,22 @@ int main(int argc, char *argv[]) {
     int a=Treedeep(tree);
     int b=hierarchyNumber(tree, 2,NULL);
     int c=hierarchyNumber2(tree, 2);
+
+    /**
+     * ²âÊÔ±éÀú
+     *
+     * */
+     printf("Ç°Ğò:\n");
+    preOrder(tree);
+    printf("\nÖĞĞò:\n");
+    inOrder(tree);
+    printf("\nºóĞò:\n");
+    backOrder(tree);
 }
 
 
 /**
- * å®Œå…¨äºŒå‰æ ‘
+ * ÍêÈ«¶ş²æÊ÷
  *
  * */
 int initRootTree(BiTree *tree, int value) {
@@ -69,31 +49,31 @@ int initRootTree(BiTree *tree, int value) {
 }
 
 /**
- * ä»æ— åˆ°æœ‰åˆ›å»ºä¸€ä¸ªå®Œå…¨tree
+ * ´ÓÎŞµ½ÓĞ´´½¨Ò»¸öÍêÈ«tree
  * */
 BiTree createBinTree(int *value, int n) {
 
     /**
-     * ä¸æ’åº,å…ˆå¡«å……å·¦è¾¹,å†å¡«å……å³è¾¹
+     * ²»ÅÅĞò,ÏÈÌî³ä×ó±ß,ÔÙÌî³äÓÒ±ß
      *
      * */
     if (n < 1) {
         return 0;
     }
     /**
-     * å…ˆåˆ›å»ºrootèŠ‚ç‚¹
+     * ÏÈ´´½¨root½Úµã
      * */
 //    initRootTree(tree, value[0]);
     /**
-     * å…ˆå¾—å‡ºæ ‘çš„æ·±åº¦
-     * ç„¶ååˆ¤æ–­è¯¥å±‚çš„
-     * èŠ‚ç‚¹æ˜¯å¦è¾¾åˆ°æœ€å¤§æ•°
+     * ÏÈµÃ³öÊ÷µÄÉî¶È
+     * È»ºóÅĞ¶Ï¸Ã²ãµÄ
+     * ½ÚµãÊÇ·ñ´ïµ½×î´óÊı
      * */
 //    int deep = Treedeep(tree);
 
     /**
-     * å…ˆç”³è¯·è¶³å¤Ÿçš„å†…å­˜,
-     * å­˜æ”¾å®Œå…¨äºŒå‰æ ‘
+     * ÏÈÉêÇë×ã¹»µÄÄÚ´æ,
+     * ´æ·ÅÍêÈ«¶ş²æÊ÷
      * */
     BiNode *tree = (BiNode *) malloc(sizeof(BiNode) * n);
     for (int i = 0; i < n; ++i) {
@@ -115,8 +95,8 @@ BiTree createBinTree(int *value, int n) {
 }
 
 /**
-   * å¯¹äºå®Œå…¨äºŒå‰æ ‘
-   * éå†å‡ºæ·±åº¦
+   * ¶ÔÓÚÍêÈ«¶ş²æÊ÷
+   * ±éÀú³öÉî¶È
    * */
 int Treedeep(BiTree tree) {
         if(NULL==tree){
@@ -157,8 +137,8 @@ int hierarchyNumber(BiTree tree, int level,int *num) {
 
 int hierarchyNumber2(BiTree tree, int level) {
     /**
-     * åˆå§‹åŒ–å½“å‰èŠ‚ç‚¹ä¸ªæ•°ï¼ŒåŠä¸‹ä¸€è¡ŒèŠ‚ç‚¹ä¸ªæ•°
-     * æ ¹èŠ‚ç‚¹æ‰€åœ¨å±‚æ•°ä¸º1
+     * ³õÊ¼»¯µ±Ç°½Úµã¸öÊı£¬¼°ÏÂÒ»ĞĞ½Úµã¸öÊı
+     * ¸ù½ÚµãËùÔÚ²ãÊıÎª1
      * */
     int curcount=1,nextcount=0,count=1;
     LinkList list=NULL;
@@ -181,8 +161,8 @@ int hierarchyNumber2(BiTree tree, int level) {
               return  nextcount;
             }
             /**
-             * è®°å½•ä¸‹ä¸€å±‚éœ€è¦
-             * å…ˆéå†çš„æ•°æ®
+             * ¼ÇÂ¼ÏÂÒ»²ãĞèÒª
+             * ÏÈ±éÀúµÄÊı¾İ
              * */
             curcount=nextcount;
             nextcount=0;
@@ -199,7 +179,7 @@ int enqueue(LinkList *list,BiTree value){
         *list=temp2;
     }else{
         /**
-         * å¾ªç¯æ¸ é“æœ€åä¸€ä¸ªèŠ‚ç‚¹
+         * Ñ­»·ÇşµÀ×îºóÒ»¸ö½Úµã
          * */
         LinkList temp;
         temp=*list;
