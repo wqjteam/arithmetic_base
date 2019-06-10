@@ -37,12 +37,13 @@ int main(int argc, char *argv[]) {
 
     PUSHLINK(&top, 'c');
     PUSHLINK(&top, 'z');
-
+    PUSHLINK(&top, 'x');
+    PUSHLINK(&top, 'y');
     char *item;
     char a = '0';
     item = &a;
     POPLINK(&top, item);
-
+    POPLINK(&top, item);
 }
 
 int INITIAL(LinkList *topxx) {
