@@ -54,6 +54,10 @@ void levelOrder(BiTree tree) {
     while (num != 0) {
         temp = dequeue(&queue);
         printf("(层数:%d:数据:%d\n)", level, temp->data);
+        /**
+         * 将左右节点都放入
+         * 队列中
+         * */
         if (temp->left != NULL) {
             enqueue(&queue, temp->left);
             nextlevelnum++;
@@ -63,6 +67,11 @@ void levelOrder(BiTree tree) {
             nextlevelnum++;
         }
         num--;
+
+        /**
+         * 如果 num=0,将记录的子节点
+         * 值赋给num,一层一层遍历
+         * */
         if (num == 0 && nextlevelnum != 0) {
             level++;
             num = nextlevelnum;
