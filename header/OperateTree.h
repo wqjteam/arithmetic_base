@@ -11,6 +11,7 @@
 
 typedef struct TreeNode {
     int data;
+    int num;/** 用于记录前序中序 反推二叉树的记录点  */
     struct TreeNode *left;
     struct TreeNode *right;
 } BiNode, *BiTree;
@@ -37,7 +38,6 @@ int hierarchyNumber2(BiTree tree, int level);
 BiTree createGeneralizedTree(char *tree);
 
 
-
 void preOrder(BiTree tree);
 
 void inOrder(BiTree tree);
@@ -52,16 +52,14 @@ void inOrder2(BiTree tree);
 
 void backOrder2(BiTree tree);
 
+BiTree createIndexTree(int *data, int n);
+
+BiTree deleteBiTree(BiTree root, int qdata);
+
+void findLeftMaxData(BiTree deliver, BiTree preDeliver);
 
 
-
-
-
-
-
-
-
-        int enqueue(LinkList *list, BiTree value);
+int enqueue(LinkList *list, BiTree value);
 
 BiTree dequeue(LinkList *list);
 
@@ -70,3 +68,11 @@ void pushSTACK(LinkList *stack, BiTree treeNode);
 BiTree popSTACK(LinkList *stack);
 
 BiTree readSTACK(LinkList stack);
+
+void findfatherItem(BiTree tree, int data);
+
+void findLeftMaxData(BiTree deliver, BiTree preDeliver);
+
+BiTree preAndInToInsert(BiTree tree, int data, int num);
+
+BiTree deleteBiTree(BiTree root, int qdata);

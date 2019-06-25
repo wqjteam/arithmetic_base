@@ -204,3 +204,32 @@ void backOrder2(BiTree tree) {
     }
 }
 
+/**
+ * 完全二叉树顺序存储的中序遍历
+ * */
+void inorder3(BiTree *trees, int n) {
+    BiTree head = NULL, temp = NULL;
+    int top = -1, i = 0, STACK[100];
+    if (n >= 0) {
+        do {
+            /**
+             * 加上trees[i] != NULL就可以执行一般二叉树
+             * */
+            while (i < n && trees[i] != NULL) {
+                STACK[++top] = i; /**BiTree的位置i进栈*/
+                i = i * 2 + 1;    /**找到I的左孩子的位置*/
+            }
+            i = STACK[top--]; /**退栈*/
+            printf("%d,", trees[i]);
+            i = i * 2 + 2;     /**找到右孩子的位置*/
+        } while (!(i > n - 1 && top == -1));
+    }
+}
+
+
+/**
+ * 顺序存储的后序遍历
+ * */
+void postorder3(BiTree *trees, int n) {
+
+}
