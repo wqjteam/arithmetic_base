@@ -76,3 +76,5 @@ void findLeftMaxData(BiTree deliver, BiTree preDeliver);
 BiTree preAndInToInsert(BiTree tree, int data, int num);
 
 BiTree deleteBiTree(BiTree root, int qdata);
+
+int judgeSortBinTree(BiTree root);
