@@ -58,6 +58,16 @@ BiTree deleteBiTree(BiTree root, int qdata);
 
 void findLeftMaxData(BiTree deliver, BiTree preDeliver);
 
+void findfatherItem(BiTree tree, int data);
+
+void findLeftMaxData(BiTree deliver, BiTree preDeliver);
+
+BiTree preAndInToInsert(BiTree tree, int data, int num);
+
+BiTree deleteBiTree(BiTree root, int qdata);
+
+int judgeSortBinTree(BiTree root);
+
 
 int enqueue(LinkList *list, BiTree value);
 
@@ -68,13 +78,3 @@ void pushSTACK(LinkList *stack, BiTree treeNode);
 BiTree popSTACK(LinkList *stack);
 
 BiTree readSTACK(LinkList stack);
-
-void findfatherItem(BiTree tree, int data);
-
-void findLeftMaxData(BiTree deliver, BiTree preDeliver);
-
-BiTree preAndInToInsert(BiTree tree, int data, int num);
-
-BiTree deleteBiTree(BiTree root, int qdata);
-
-int judgeSortBinTree(BiTree root);
