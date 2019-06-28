@@ -115,6 +115,10 @@ void DFS(Vlink G[], int visited[], int v, LinkList stack) {
         while (elink != NULL) {
             int i = elink->adjvex;
             if (visited[i] == 0) {
+                /**
+                 * 如果没有访问过
+                 * 压栈进入
+                 * */
                 pushStack(&stack, i);
                 elink == NULL;
             } else {
