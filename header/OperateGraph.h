@@ -23,19 +23,29 @@ typedef struct ver {
 
 
 typedef struct verL {
-    Vlink data;    /** 数据存储区域*/
+    int data;    /** 数据存储区域*/
     struct verL *link; /** 指向第一条边 */
-} verLnode,*verList;
+} LinkNode, *LinkList;
 #define Max 10
 
 void Traverl_DFS(Vlink G[], int visited[], int n);
 
-void DFS(Vlink G[], int visited[], int v);
+void DFS(Vlink G[], int visited[], int v, LinkList stack);
 
 void Traverl_BFS(Vlink G[], int visited[], int n);
 
-void BFS(Vlink G[], int visited[], int v);
+void BFS(Vlink G[], int visited[], int v, LinkList queue);
 
-void enqueue(verList *queue, Vlink vlink);
+void enqueue(LinkList *queue, int vlink);
 
-Vlink delqueue(verList *queue);
+int delqueue(LinkList *queue);
+
+int EmptyQ(LinkList queue);
+
+void pushStack(LinkList *queue, int vlink);
+
+int popStack(LinkList *queue);
+
+int readStack(LinkList *queue);
+
+int EmptyStack(LinkList queue);
