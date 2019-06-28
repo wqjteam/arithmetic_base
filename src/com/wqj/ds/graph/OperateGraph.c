@@ -13,8 +13,8 @@ void main(int argc, char *argv[]) {
 
 }
 
-void enqueue(verList *queue, Vlink vlink) {
-    verList deliver = *queue, temp = (verList) malloc(sizeof(verLnode));
+void enqueue(LinkList *queue, int vlink) {
+    LinkList deliver = *queue, temp = (LinkList) malloc(sizeof(LinkNode));
     temp->link = NULL;
     if (*queue == NULL) {
         *queue = temp;
@@ -26,15 +26,60 @@ void enqueue(verList *queue, Vlink vlink) {
     }
 }
 
-Vlink delqueue(verList *queue) {
+int delqueue(LinkList *queue) {
     if (*queue == NULL) {
 //        return NULL;
     } else {
-        Vlink result = (*queue)->data;
+        int result = (*queue)->data;
 //        free()
         *queue = (*queue)->link;
         return result;
     }
+}
+
+
+/**
+ * 判断队列
+ * 是否为空
+ * */
+int EmptyQ(LinkList queue) {
+    if (queue == NULL) {
+        return 1;
+    }
+    return 0;
+
+}
+
+void pushStack(LinkList *queue, int vlink) {
+    /**
+     * 如果入值为-1,
+     * 那么入值为空
+     * 不进行入栈
+     * */
+    if(vlink==-1){
+        return;
+    }
+    LinkList newnode = (LinkList) malloc(sizeof(LinkNode));
+    newnode->data = vlink;
+    newnode->link = (*queue);
+    (*queue) = newnode;
+}
+
+int popStack(LinkList *queue) {
+    int result = (*queue)->data;
+    (*queue) = (*queue)->link;
+    return result;
+}
+
+int readStack(LinkList *queue) {
+    return (*queue)->data;
+}
+
+int EmptyStack(LinkList queue) {
+    if (queue == NULL) {
+        return 1;
+    }
+    return 0;
 }
 
 

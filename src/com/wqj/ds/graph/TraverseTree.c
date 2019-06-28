@@ -15,11 +15,11 @@ void Traverl_DFS(Vlink G[], int visited[], int n) {
      * 应该是默认赋值0
      * */
     for (int i = 0; i < n; ++i) {
-        visited[i]=0;
+        visited[i] = 0;
     }
-    for (int j = 0; j <n ; ++j) {
-        if( visited[j]!=1){
-            DFS(G,visited,n);
+    for (int j = 0; j < n; ++j) {
+        if (visited[j] != 1) {
+            DFS(G, visited, n);
         }
 
     }
@@ -31,69 +31,98 @@ void Traverl_DFS(Vlink G[], int visited[], int n) {
  * 广度优先
  * 搜索
  * */
-void Traverl_BFS(Vlink G[], int visited[], int n){
+void Traverl_BFS(Vlink G[], int visited[], int n) {
     /**
     * 应该是默认赋值0
     * */
+    LinkList queue = NULL;
     for (int i = 0; i < n; ++i) {
-        visited[i]=0;
+        visited[i] = 0;
     }
-    for (int j = 0; j <n ; ++j) {
-        if( visited[j]!=1){
-            BFS(G,visited,n);
+    for (int j = 0; j < n; ++j) {
+        if (visited[j] != 1) {
+            BFS(G, visited, n, queue);
         }
 
     }
 }
 
 
-void BFS(Vlink G[], int visited[], int v) {
-    int w;
-    visited[v]=1;
-    printf("数据输出%d\n", G[v].data);
-
-}
-
-
-
-
-
-
-
-void DFS(Vlink G[], int visited[], int v) {
-
-    int temp = 0;
-    Vlink *vlink = NULL;
+void BFS(Vlink G[], int visited[], int v, LinkList queue) {
     Elink *elink = NULL;
-    do {
+    int w;
+    visited[v] = 1; /**  访问之后将其置为*/
+    printf("数据输出%d\n", G[v].data);/**  访问位置*/
+    enqueue(&queue, v); /** 入栈*/
+    while (!EmptyQ(queue)) {
+        v = delqueue(&queue);
 
-        printf("数据输出%d\n", G[v].data);
-        visited[v] = 1;
-        elink = G[v].link->adjvex;
-        int adjvex = elink->adjvex;
-        do {
-            if (visited[adjvex] == 0) {
-                break;
+        /**
+         * 先访问第一个邻接点
+         * 可能会出现 没有邻连接点的情况
+         * */
+        if (G[v].link == NULL) {
+            w = -1;
+        } else {
+            elink = G[v].link->next;
+            w = elink->adjvex;
+        }
+        /**
+         *
+         * */
+        while (w != -1) {
+            if (visited[w] == 0) {
+                visited[w] = 1; /**  访问之后将其置为*/
+                printf("数据输出%d\n", G[w].data);/**  访问位置*/
+                enqueue(&queue, w); /** 入队列*/
             }
             /**
-             * 判断下 ,面没有节点报错
+             * 获取到下一个edge
              * */
-            adjvex = elink->adjvex;
-
-            elink = elink->next;
-
-        } while (elink->next != NULL);
-        /**
-         *判断visited[local]中是否被访问
-         * ,如果最终被访问 ,这证明这次都结束了
-         * */
-        if (visited[adjvex] == 0) {
-            vlink = &G[adjvex];
-
-        } else {
-            vlink = NULL;
+            if (elink->next != NULL) {
+                w = elink->adjvex;
+            } else {
+                w = -1;
+                elink = elink->next;/** 传递变量循环*/
+            }
         }
-    } while (vlink != NULL);
 
+    }
 
 }
+
+
+void DFS(Vlink G[], int visited[], int v, LinkList stack) {
+    int w;
+    Elink *elink = NULL;
+    Vlink *vlink = NULL;
+    /**
+     * 先压入一个v
+     * */
+    pushStack(&stack, v);
+    while (!EmptyStack(stack)) {
+        /**
+         * 弹出,并访问数据
+         * */
+        w = popStack(&stack);
+        printf("数据输出%d\n", G[w].data);
+        visited[w] = 1;
+
+        /**
+         * 遍历出没有被访问的节点
+         * */
+        elink = G[w].link;
+        while (elink != NULL) {
+            int i = elink->adjvex;
+            if (visited[i] == 0) {
+                pushStack(&stack, i);
+                elink == NULL;
+            } else {
+                elink = elink->next;
+            }
+        }
+
+
+    }
+}
+
