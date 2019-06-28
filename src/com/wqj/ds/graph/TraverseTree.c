@@ -95,7 +95,6 @@ void BFS(Vlink G[], int visited[], int v, LinkList queue) {
 void DFS(Vlink G[], int visited[], int v, LinkList stack) {
     int w;
     Elink *elink = NULL;
-    Vlink *vlink = NULL;
     /**
      * 先压入一个v
      * */
