@@ -11,6 +11,18 @@ void main(int argc, char *argv[]) {
     Vlink vlink[10];
 
 
+
+// 邻接矩阵定义图  MV表示顶点间没有变，不邻接
+    int Matrix[VNUM][VNUM] =
+            {
+                    {0,  10, MV, 30, 100},
+                    {MV, 0,  50, MV, MV},
+                    {MV, MV, 0,  MV, 10},
+                    {MV, MV, 20, 0,  60},
+                    {MV, MV, MV, MV, 0},
+            };
+
+
 }
 
 void enqueue(LinkList *queue, int vlink) {
@@ -56,7 +68,7 @@ void pushStack(LinkList *queue, int vlink) {
      * 那么入值为空
      * 不进行入栈
      * */
-    if(vlink==-1){
+    if (vlink == -1) {
         return;
     }
     LinkList newnode = (LinkList) malloc(sizeof(LinkNode));

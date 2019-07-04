@@ -10,6 +10,11 @@
 
 #include <stdio.h>
 
+#define MAXNUMB 5
+
+#define  VNUM 5
+
+#define  MV 65536
 typedef struct edge {
     int adjvex;             /** 指向头结点的下标*/
     int weight;            /** 权值*/
