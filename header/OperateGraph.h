@@ -41,6 +41,11 @@ void Traverl_BFS(Vlink G[], int visited[], int n);
 
 void BFS(Vlink G[], int visited[], int v, LinkList queue);
 
+
+int MINDIST(int s, int dist);
+
+int WEARCH_VCR(int s,int dist[],int u);
+
 void enqueue(LinkList *queue, int vlink);
 
 int delqueue(LinkList *queue);
