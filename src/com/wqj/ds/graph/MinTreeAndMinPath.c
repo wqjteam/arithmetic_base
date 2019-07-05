@@ -89,3 +89,31 @@ int MINDIST(int s, int dist) {
 int WEARCH_VCR(int s, int dist[], int u) {
 
 }
+
+
+void TOPO_SORT(Vlink G[],int n,int data[]){
+
+    Elink *p;
+    int j,top=-1;
+    /**
+     * 堆栈初始化
+     * */
+    for(int i=0;i<n;i++){
+        if(G[i].indegree==0){
+            G[i].indegree=top;
+            top=i;
+        }
+    }
+    /**
+     * 依次将入度为0的顶点压榨堆栈中
+     * */
+    for (int k = 0; k < n; ++k) {
+        if(top==-1){
+            printf("\n网络中存在回路");
+        }else{
+            j=top;
+            top=G[top].indegree;
+//            V[i]
+        }
+    }
+}
