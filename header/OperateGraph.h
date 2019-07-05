@@ -22,15 +22,21 @@ typedef struct edge {
 } Elink;
 
 typedef struct ver {
+    int indegree;      /** 顶点的入度*/
     int data;    /** 数据存储区域*/
     Elink *link; /** 指向第一条边 */
 } Vlink;
 
 
+/**
+ * 用于建立堆栈和队列
+ * */
 typedef struct verL {
     int data;    /** 数据存储区域*/
     struct verL *link; /** 指向第一条边 */
 } LinkNode, *LinkList;
+
+
 #define Max 10
 
 void Traverl_DFS(Vlink G[], int visited[], int n);
@@ -44,7 +50,7 @@ void BFS(Vlink G[], int visited[], int v, LinkList queue);
 
 int MINDIST(int s, int dist);
 
-int WEARCH_VCR(int s,int dist[],int u);
+int WEARCH_VCR(int s, int dist[], int u);
 
 void enqueue(LinkList *queue, int vlink);
 
