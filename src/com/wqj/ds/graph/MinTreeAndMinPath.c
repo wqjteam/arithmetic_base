@@ -49,11 +49,43 @@ void minspant_prim(int GE[][MAXNUMB], int n) {
 }
 
 
-void Dijkstra(int Matrix[][VNUM], int sv) {
-    int P[VNUM];             // 辅助数组
-    int Dist[VNUM];          // 存放最短路径，权值
-    int Mark[VNUM];         // 标记数组
-    int i = 0;
-    int j = 0;
-    if()
+void Dijkstra(int cost[][MAXNUMB], int v, int n, int dist[], int path[][MAXNUMB]) {
+    int w, u, count, pos[n], s[MAXNUMB];
+    for (int i = 0; i < n; ++i) {
+        s[i] = 0;     /** 标记数组置为0*/
+        dist[i] = cost[v][i]; /**  将邻接矩阵第V行元素依次送dist数组*/
+        path[i][0] = v;       /** 源点v到个顶点的路径置为初值*/
+        pos[i] = 0;           /** 第i条路径的位置计算器置为初值*/
+    }
+
+    s[v] = 1;
+    count = 1;        /** 计算器赋值1*/
+
+    while (count < n) {  /** 以下过程执行n-1次*/
+        /** 利用s和dist在尚未找到最短路径的顶点中确定一个与V最近的顶点U */
+        u = MINDIST(s, dist);
+        s[u] = 1;     /** 置u的标记为1*/
+        path[u][++pos[u]] = u;  /** 将U添加到从v到u的最短路径*/
+        count++;                /** 极速器累加1*/
+        while (1) {             /** 根据 U 跟新从 v到所有尚未确定的最短路径顶点的路径长度*/
+            if ((w = WEARCH_VCR(s, dist, u) == -1)) {
+                break;
+            } else {
+                if (dist[u] + cost[u][w] < dist[w]) {
+                    dist[w] = dist[u] + cost[u][w];
+                    for (int i = 0; i < pos[u]; ++i) {
+                        path[w][i] = path[u][i];
+                    }
+                }
+            }
+        }
+    }
+}
+
+int MINDIST(int s, int dist) {
+
+}
+
+int WEARCH_VCR(int s, int dist[], int u) {
+
 }
