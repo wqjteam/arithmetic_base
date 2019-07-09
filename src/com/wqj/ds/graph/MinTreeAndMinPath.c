@@ -182,6 +182,94 @@ void ADDJLIST(Vlink G[], int n, int data[], int A[][n]) {
     }
 }
 
+void DELV(Vlink G[], int n, int data) {
+
+    int index = -1;
+    Elink *temp = NULL, *deliver = NULL, *pre = NULL;
+    /**
+     * 寻找该节点
+     * */
+    for (int i = 0; i < n; ++i) {
+        if (G[i].data == data) {
+            index = i;
+            break;
+        }
+    }
+    /**
+     * 删除该节点
+     * */
+    if (index != -1) {
+        deliver = G[index].link;
+        for (int i = index + 1; i < n; ++i) {
+            G[index - 1] = G[index];
+        }
+    }
+    n--;
+
+    /**
+     *释放节点下的elink的数据
+     * */
+    while (deliver != NULL) {
+        temp = deliver;
+        deliver = deliver->next;
+        free(temp);
+    }
+
+
+    /**
+     * 修改和删除残余信息
+     * */
+    if (index != -1) {
+        temp = G[index].link;
+        for (int i = index + 1; i < n; ++i) {
+            G[index - 1] = G[index];
+        }
+        free(temp);
+    }
+
+    /**
+     * 遍历其他的边
+     * 1将大于index的的下标减一
+     * 2将等于index的下标边删除
+     * */
+    for (int i = 0; i < n; ++i) {
+        /**
+         * 第一种情况
+         * */
+        if (G[i].link->adjvex == index) {
+            temp = G[i].link;
+            G[i].link = temp->next;
+            free(temp);
+            temp = NULL;
+            continue;
+        }
+        deliver = G[index].link;
+        pre = deliver;
+
+        while (deliver != NULL) {
+            if (deliver->adjvex == index) {
+                /**
+                 * 第二种情况
+                 * */
+                temp = deliver;
+                pre->next = deliver->next;
+                free(temp);
+                deliver = pre->next;
+                continue;
+            } else if (deliver->adjvex > index) {
+                /**
+                 * 如果大于则减一
+                 * */
+                deliver->adjvex--;
+                pre = deliver;
+                deliver = deliver->next;
+            } else {
+                pre = deliver;
+                deliver = deliver->next;
+            }
+        }
+    }
+}
 
 
 
