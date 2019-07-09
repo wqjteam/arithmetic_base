@@ -240,7 +240,7 @@ void DELV(Vlink G[], int n, int data) {
             temp = G[i].link;
             G[i].link = temp->next;
             free(temp);
-            temp = NULL;
+//            temp = NULL;
             continue;
         }
         deliver = G[index].link;
