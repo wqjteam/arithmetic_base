@@ -69,7 +69,7 @@ int BIN_SEACHER2(int resources[], int high, int low, int find_data) {
             return BIN_SEACHER2(resources, high, mid + 1, find_data);
         }
         if (find_data < resources[mid]) {
-            return BIN_SEACHER2(resources, mid + 1, low, find_data);
+            return BIN_SEACHER2(resources, mid - 1, low, find_data);
         }
     } else {
         return -1;
