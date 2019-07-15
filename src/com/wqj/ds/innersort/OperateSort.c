@@ -86,4 +86,32 @@ void BIN_INSERTSORT(int k[], int n) {
     }
 }
 
+/**
+ * 选择排序
+ * 选择出最小的 与第i个交换位置
+ * */
+void SELECTSORT(int k[], int n) {
+    int index, temp;
+    for (int i = 0; i < n; ++i) {
+        index = i;
+        /**
+         * 寻找最小的数据
+         * */
+        for (int j = i + 1; j < n; ++j) {
+            if (k[index] > k[j]) {
+                index = j;
+            }
+        }
+        /**
+         * 交换数据
+         * */
+        if (index != i) {
+            temp = k[index];
+            k[index] = k[i];
+            k[i] = temp;
+        }
+
+    }
+}
+
 
