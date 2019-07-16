@@ -8,10 +8,16 @@ void INSERTSORT(int k[], int n);
 
 void BIN_INSERTSORT(int k[], int n);
 
+void BUBBLESORT(int k[], int n);
+
+void SELECTSORT(int k[], int n);
+
+void SHELLSORT(int k[], int n);
+
 int main(int argc, char *argv[]) {
 
-
     int k[] = {49, 38, 65, 97, 76, 13, 27, 79};
+    printf("²åÈëÅÅĞò:\n");
     INSERTSORT(k, 8);
     for (int i = 0; i < 8; ++i) {
         printf(" %d", k[i]);
@@ -19,41 +25,67 @@ int main(int argc, char *argv[]) {
 
     printf("\n\n\n");
     int k2[] = {49, 38, 65, 97, 76, 13, 27, 79};
+    printf("ÕÛ°ë²åÈëÅÅĞò:\n");
     BIN_INSERTSORT(k2, 8);
     for (int i = 0; i < 8; ++i) {
         printf(" %d", k2[i]);
+    }
+
+    printf("\n\n\n");
+    int k3[] = {49, 38, 65, 97, 76, 13, 27, 79};
+    printf("Ñ¡ÔñÅÅĞò:\n");
+    SELECTSORT(k3, 8);
+    for (int i = 0; i < 8; ++i) {
+        printf(" %d", k3[i]);
+    }
+
+    printf("\n\n\n");
+    int k4[] = {49, 38, 65, 97, 76, 13, 27, 79};
+    printf("Ã°ÅİÅÅĞò:\n");
+    BUBBLESORT(k4, 8);
+    for (int i = 0; i < 8; ++i) {
+        printf(" %d", k4[i]);
+    }
+
+
+    printf("\n\n\n");
+    int k5[] = {49, 38, 65, 97, 76, 13, 27, 79};
+    printf("Ï£¶ûÅÅĞò:\n");
+    SHELLSORT(k5, 8);
+    for (int i = 0; i < 8; ++i) {
+        printf(" %d", k5[i]);
     }
     return 0;
 }
 
 /**
- * æ’å…¥æ’åº
+ * ²åÈëÅÅĞò
  * */
 void INSERTSORT(int k[], int n) {
     int temp;
     /**
-     * éœ€è¦æ’åºçš„æ˜¯2åˆ°n ä¸‹æ ‡å°±æ˜¯1åˆ°n-1
+     * ĞèÒªÅÅĞòµÄÊÇ2µ½n ÏÂ±ê¾ÍÊÇ1µ½n-1
      * */
     for (int i = 1; i < n; ++i) {
         temp = k[i];
         int j = i - 1;
         /**
-         * ç§»åŠ¨å¤§äºtempçš„æ•°æ®
+         * ÒÆ¶¯´óÓÚtempµÄÊı¾İ
          * */
         while (j >= 0 && temp < k[j]) {
             k[j + 1] = k[j];
             j--;
         }
         /**
-         * è½åœ°tempæ•°æ®
+         * ÂäµØtempÊı¾İ
          * */
         k[j + 1] = temp;
     }
 }
 
 /**
- * æŠ˜åŠ
- * æ’å…¥æ’åº
+ * ÕÛ°ë
+ * ²åÈëÅÅĞò
  * */
 void BIN_INSERTSORT(int k[], int n) {
     int low, high, mid, temp;
@@ -62,7 +94,7 @@ void BIN_INSERTSORT(int k[], int n) {
         low = 0;
         high = i - 1;
         /**
-         * å¯»æ‰¾åˆé€‚çš„ä½ç½®
+         * Ñ°ÕÒºÏÊÊµÄÎ»ÖÃ
          * */
         while (low <= high) {
             mid = (low + high) / 2;
@@ -74,28 +106,28 @@ void BIN_INSERTSORT(int k[], int n) {
         }
 
         /**
-         * ç§»åŠ¨æ•°æ®
+         * ÒÆ¶¯Êı¾İ
          * */
         for (int j = i - 1; j >= low; j--) {
             k[j + 1] = k[j];
         }
         /**
-        * è½åœ°tempæ•°æ®
+        * ÂäµØtempÊı¾İ
         * */
         k[low] = temp;
     }
 }
 
 /**
- * é€‰æ‹©æ’åº
- * é€‰æ‹©å‡ºæœ€å°çš„ ä¸ç¬¬iä¸ªäº¤æ¢ä½ç½®
+ * Ñ¡ÔñÅÅĞò
+ * Ñ¡Ôñ³ö×îĞ¡µÄ ÓëµÚi¸ö½»»»Î»ÖÃ
  * */
 void SELECTSORT(int k[], int n) {
     int index, temp;
     for (int i = 0; i < n; ++i) {
         index = i;
         /**
-         * å¯»æ‰¾æœ€å°çš„æ•°æ®
+         * Ñ°ÕÒ×îĞ¡µÄÊı¾İ
          * */
         for (int j = i + 1; j < n; ++j) {
             if (k[index] > k[j]) {
@@ -103,7 +135,7 @@ void SELECTSORT(int k[], int n) {
             }
         }
         /**
-         * äº¤æ¢æ•°æ®
+         * ½»»»Êı¾İ
          * */
         if (index != i) {
             temp = k[index];
@@ -114,4 +146,75 @@ void SELECTSORT(int k[], int n) {
     }
 }
 
+/**
+ * Ã°ÅİÅÅĞò
+ * */
+void BUBBLESORT(int k[], int n) {
+    int i = n, temp, flag = 1;
+    while (i > 0 && flag == 1) {
+        flag = 0; /**  Ã¿ÌËÅÅĞòÖ®Ç° ÏÈ°Ñ±êÖ¾flagÁ¢Îª0*/
+        for (int j = 0; j < i; ++j) {
+            if (j + 1 <= n - 1 && k[j] > k[j + 1]) {
+                temp = k[j];
+                k[j] = k[j + 1];
+                k[j + 1] = temp;
+                flag = 1;
+            }
+        }
+        i--;
+    }
+}
 
+
+/**
+ *
+ * ÉèÖÃgap Ã¿´Î±È½Ï²»Í¬µÄÊı¾İÁ¿
+ * Ï£¶ûÅÅĞò
+ * */
+void SHELLSORT(int k[], int n) {
+    int temp, gap = n;
+    /**
+     * ÆğÊ¼ÖµgapÎªn,Ñ­»·Ò»´Î³ıÒÔ2ÏòÏÂÈ¡Õû
+     * */
+    while (gap > 0) {
+        gap = gap / 2;
+        /**
+         *
+         * */
+        for (int i = gap; i < n; ++i) {
+            temp = k[i];
+            int j;
+            /**
+             * Ñ­»·¶Ô±È¼ä¸ôgapµÄÊı¾İ
+             * Èç¹ûÒ»µ©·¢ÏÖ²»·ûºÏ¹æÔò
+             * ËµÃ÷:Ç°ÃæµÄgapÒÑ¾­ÊÇÓĞĞòµÄÁË
+             * j >= gap ·ÀÖ¹j >= gap³öÏÖÒì³£
+             * */
+            for (j = i; j >= gap && k[j - gap] > temp; j -= gap) {
+                /**
+                 * ÍùºóÒÆ¶¯ÎªÊı¾İ
+                 * */
+                k[j] = k[j - gap];
+            }
+            /**
+             * °ÑtempÊı¾İÌîÈëµ½½»»»Î»ÖÃ
+             * */
+            k[j] = temp;
+        }
+    }
+}
+
+void shell(int k[], int n) {
+    int gap = n, temp;
+    while (gap > 0) {
+        gap = gap / 2;
+
+        for (int i = gap; i < n; i++) {
+            int j;
+            for (j = i; j >= gap && k[j - gap] > temp; j -= gap) {
+                k[j] = k[j - gap];
+            }
+            k[j] = temp;
+        }
+    }
+}
