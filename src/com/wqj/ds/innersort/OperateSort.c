@@ -296,6 +296,7 @@ void QuickSort(int k[], int n) {
         k[i] = temp;
         /**
          * 入栈,需要下次遍历
+         * 保证头和尾
          * */
         if (low < i - 1) {
             z[rear++] = low;
