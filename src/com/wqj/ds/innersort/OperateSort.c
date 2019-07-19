@@ -229,7 +229,7 @@ void SHELLSORT(int k[], int n) {
 
 
 /**
- * 快速排序
+ * 递归快速排序
  * */
 void recursionQuickSort(int k[], int low, int high) {
     int temp;
