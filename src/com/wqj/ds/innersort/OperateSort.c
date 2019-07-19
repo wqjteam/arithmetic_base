@@ -270,14 +270,16 @@ void QuickSort(int k[], int n) {
     z[rear++] = 0;
     z[rear++] = n - 1;
     while (front < rear) {
+        /**
+         * 出队列
+         * */
         low = i = z[front++];
         high = j = z[front++];
         temp = k[i];
 
         while (i < j) {
-            while (i < j && temp <= k[j]) {
-                --j;
-            }
+            while (i < j && temp <= k[j]) j--;
+
             if (i < j) {
                 k[i] = k[j];
                 i++;
@@ -288,7 +290,13 @@ void QuickSort(int k[], int n) {
                 j--;
             }
         }
+        /**
+         * 落地第一个对比的数据
+         * */
         k[i] = temp;
+        /**
+         * 入栈,需要下次遍历
+         * */
         if (low < i - 1) {
             z[rear++] = low;
             z[rear++] = i - 1;
