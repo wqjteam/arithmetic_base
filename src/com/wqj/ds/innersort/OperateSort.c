@@ -14,6 +14,10 @@ void SELECTSORT(int k[], int n);
 
 void SHELLSORT(int k[], int n);
 
+void recursionQuickSort(int k[], int low, int high);
+
+void QuickSort(int k[], int n);
+
 int main(int argc, char *argv[]) {
 
     int k[] = {49, 38, 65, 97, 76, 13, 27, 79};
@@ -55,6 +59,25 @@ int main(int argc, char *argv[]) {
     for (int i = 0; i < 8; ++i) {
         printf(" %d", k5[i]);
     }
+
+
+    printf("\n\n\n");
+    int k6[] = {49, 38, 65, 97, 76, 13, 27, 79};
+    printf("递归快速排序:\n");
+    recursionQuickSort(k6, 0, 7);
+    for (int i = 0; i < 8; ++i) {
+        printf(" %d", k6[i]);
+    }
+
+
+    printf("\n\n\n");
+    int k7[] = {49, 38, 65, 97, 76, 13, 27, 79};
+    printf("非递归快速排序:\n");
+    QuickSort(k7, 8);
+    for (int i = 0; i < 8; ++i) {
+        printf(" %d", k7[i]);
+    }
+
     return 0;
 }
 
@@ -201,6 +224,81 @@ void SHELLSORT(int k[], int n) {
              * */
             k[j] = temp;
         }
+    }
+}
+
+
+/**
+ * 快速排序
+ * */
+void recursionQuickSort(int k[], int low, int high) {
+    int temp;
+    int i = low, j = high;
+    if (low < high) {
+        temp = k[low];
+        while (i < j) {
+            while (j > i && k[j] >= temp) --j;
+            if (i < j) {
+                k[i] = k[j];
+                i++;
+            }
+            while (i < j && k[i] < temp) ++i;
+            if (i < j) {
+                k[j] = k[i];
+                --j;
+
+            }
+        }
+        k[i] = temp;
+        /**
+         * 用j+1还是i+1都是一样的
+         * */
+        recursionQuickSort(k, low, i - 1);
+        recursionQuickSort(k, i + 1, high);
+    }
+}
+
+
+/**
+ * 非递归算法
+ * */
+void QuickSort(int k[], int n) {
+    /**
+     * 设置长度为n,保证不会溢出
+     * */
+    int z[n], front = 0, rear = 0, i, j, temp, low, high;
+    z[rear++] = 0;
+    z[rear++] = n - 1;
+    while (front < rear) {
+        low = i = z[front++];
+        high = j = z[front++];
+        temp = k[i];
+
+        while (i < j) {
+            while (i < j && temp <= k[j]) {
+                --j;
+            }
+            if (i < j) {
+                k[i] = k[j];
+                i++;
+            }
+            while (i < j && temp > k[i]) i++;
+            if (i < j) {
+                k[j] = k[i];
+                j--;
+            }
+        }
+        k[i] = temp;
+        if (low < i - 1) {
+            z[rear++] = low;
+            z[rear++] = i - 1;
+
+        }
+        if (high > i + 1) {
+            z[rear++] = i + 1;
+            z[rear++] = high;
+        }
+
     }
 }
 
