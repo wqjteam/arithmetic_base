@@ -18,6 +18,10 @@ void recursionQuickSort(int k[], int low, int high);
 
 void QuickSort(int k[], int n);
 
+void sift(int k[], int low, int high);
+
+void heapSort(int k[], int n);
+
 int main(int argc, char *argv[]) {
 
     int k[] = {49, 38, 65, 97, 76, 13, 27, 79};
@@ -236,13 +240,25 @@ void recursionQuickSort(int k[], int low, int high) {
     int i = low, j = high;
     if (low < high) {
         temp = k[low];
+        /**
+         * 指定两个浮标 i j 分为在头部和尾部
+         * 以第一个关键词的值为分界点
+         * 将小于他的关键词放在右边
+         * 将大于他的关键词放在左边
+         * */
         while (i < j) {
             while (j > i && k[j] >= temp) --j;
+            /**
+             * 处理小于他的关键词
+             * */
             if (i < j) {
                 k[i] = k[j];
                 i++;
             }
             while (i < j && k[i] < temp) ++i;
+            /**
+             * 处理大于他的关键词
+             * */
             if (i < j) {
                 k[j] = k[i];
                 --j;
@@ -279,12 +295,17 @@ void QuickSort(int k[], int n) {
 
         while (i < j) {
             while (i < j && temp <= k[j]) j--;
-
+            /**
+              * 处理小于他的关键词
+              */
             if (i < j) {
                 k[i] = k[j];
                 i++;
             }
             while (i < j && temp > k[i]) i++;
+            /**
+             * 处理大于他的关键词
+             * */
             if (i < j) {
                 k[j] = k[i];
                 j--;
@@ -310,6 +331,43 @@ void QuickSort(int k[], int n) {
 
     }
 }
+
+
+/**
+ *
+ * 堆排序
+ *
+ * */
+void heapSort(int k[], int n) {
+    int temp;
+    for (int i = n / 2 - 1; i >= 0; ++i)
+        sift(k, i, n - 1);
+    for (int i = n - 1; i > 0; --i) {
+        temp = k[0];
+        k[0] = k[i];
+        k[i] = temp;
+        sift(k, 0, i - 1);
+    }
+}
+
+void sift(int k[], int low, int high) {
+    int i = low, j = 2 * i + 1;
+    int temp = k[i];
+    while (j <= high) {
+        if (j < high && k[j] < k[j + 1]) {
+            ++j;
+        }
+        if (temp < k[j]) {
+            k[i] = k[j];
+            i = j;
+            j = 2 * i + 1;
+        } else {
+            break;
+        }
+    }
+    k[i] = temp;
+}
+
 
 void shell(int k[], int n) {
     int gap = n, temp;
