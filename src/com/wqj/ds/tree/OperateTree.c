@@ -178,7 +178,7 @@ int hierarchyNumber2(BiTree tree, int level) {
             }
             /**
              * 记录下一层需要
-             * 先遍历的数据
+             * 先遍历的数据个数
              * */
             curcount = nextcount;
             nextcount = 0;
