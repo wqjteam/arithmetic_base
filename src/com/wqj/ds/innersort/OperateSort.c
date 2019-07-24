@@ -340,9 +340,22 @@ void QuickSort(int k[], int n) {
  * */
 void heapSort(int k[], int n) {
     int temp;
+    /**
+     * 从第一个非叶子节点开始
+     * 下标为0时候n/2-1  下标为1的时候n/2
+     * 先弄成一个大顶堆
+     * */
     for (int i = n / 2 - 1; i >= 0; ++i)
         sift(k, i, n - 1);
+    /**
+     * 从大顶堆中抽取一个最大的数据
+     * 与最后一个叶子节点交换位置
+     * */
     for (int i = n - 1; i > 0; --i) {
+        /**
+         * k[0]就是节点当前堆中关键字最大的一个元素
+         * 交换位置
+         * */
         temp = k[0];
         k[0] = k[i];
         k[i] = temp;
