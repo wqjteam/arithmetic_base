@@ -82,6 +82,15 @@ int main(int argc, char *argv[]) {
         printf(" %d", k7[i]);
     }
 
+
+    printf("\n\n\n");
+    int k8[] = {49, 38, 65, 97, 76, 13, 27, 79};
+    printf("堆排序:\n");
+    QuickSort(k8, 8);
+    for (int i = 0; i < 8; ++i) {
+        printf(" %d", k8[i]);
+    }
+
     return 0;
 }
 
@@ -363,14 +372,38 @@ void heapSort(int k[], int n) {
     }
 }
 
+/**
+ * 建立堆的方法
+ * */
 void sift(int k[], int low, int high) {
+    /**
+     * i就是最后一个非叶子结点
+     * j是最后一个非叶子结点的右子树
+     * */
     int i = low, j = 2 * i + 1;
+    /**
+     *获取到最后一个叶子节点的值
+     * */
     int temp = k[i];
+    /**
+     * 孩子节点的下标小于传入的最大节点
+     * */
     while (j <= high) {
-        if (j < high && k[j] < k[j + 1]) {
-            ++j;
-        }
+        /**
+         * j节点有左右两孩子
+         * 并且j节点的值小于j+1的值
+         * 也就是j节点的值小于兄弟节点
+         *
+         * 书上给出的是 获取到左右孩子中的最大下标
+         * */
+        if (j < high && k[j] < k[j + 1]) ++j;
+
         if (temp < k[j]) {
+            /**
+             * 将孩子节点赋值到父节点上
+             * 将i节点的的下标下移对应的孩子节点
+             * 同时j的节点去右孩子节点
+             * */
             k[i] = k[j];
             i = j;
             j = 2 * i + 1;
