@@ -90,7 +90,13 @@ int main(int argc, char *argv[]) {
     for (int i = 0; i < 8; ++i) {
         printf(" %d", k8[i]);
     }
-
+    printf("\n");
+    int x, f;
+    /**
+     * ²âÊÔscanf
+     * */
+    scanf("a%d,%d", &x, &f);
+    printf("\n%d%d", x, f);
     return 0;
 }
 
