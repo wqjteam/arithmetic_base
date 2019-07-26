@@ -86,7 +86,7 @@ int main(int argc, char *argv[]) {
     printf("\n\n\n");
     int k8[] = {49, 38, 65, 97, 76, 13, 27, 79};
     printf("堆排序:\n");
-    QuickSort(k8, 8);
+    heapSort(k8, 8);
     for (int i = 0; i < 8; ++i) {
         printf(" %d", k8[i]);
     }
@@ -354,7 +354,7 @@ void heapSort(int k[], int n) {
      * 下标为0时候n/2-1  下标为1的时候n/2
      * 先弄成一个大顶堆
      * */
-    for (int i = n / 2 - 1; i >= 0; ++i)
+    for (int i = n / 2 - 1; i >= 0; --i)
         sift(k, i, n - 1);
     /**
      * 从大顶堆中抽取一个最大的数据
@@ -395,10 +395,11 @@ void sift(int k[], int low, int high) {
          * 也就是j节点的值小于兄弟节点
          *
          * 书上给出的是 获取到左右孩子中的最大下标
+         * j<high 证明j+1存在
          * */
         if (j < high && k[j] < k[j + 1]) ++j;
 
-        if (temp < k[j]) {
+        if (temp < k[j]) {/** 每次都是和temp相比,所以temp不要着急落地的k[j]上*/
             /**
              * 将孩子节点赋值到父节点上
              * 将i节点的的下标下移对应的孩子节点
