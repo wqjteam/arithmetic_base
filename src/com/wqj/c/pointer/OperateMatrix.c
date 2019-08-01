@@ -11,6 +11,9 @@ void clockwiseMatrix(int (*ori)[col], int N);
 
 int main() {
     int N;
+    int b = 6;
+    int p, q;
+    q = ++b + ++b+ ++b;
     printf("请输入矩阵的长度宽度\n");
     scanf("%d", &N);
     int original[col][col];
