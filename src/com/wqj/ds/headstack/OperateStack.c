@@ -47,7 +47,7 @@ int full(int top) {
 }
 
 int PUSH(char STACK[], int *top, char item) {
-    if (full(top)) {
+    if (full(*top)) {
         return 0;
     } else {
         STACK[*++top] = item;
@@ -60,7 +60,7 @@ int delete(char STACK[], int *top, int *item) {
         return 0;
     }
     //将值赋给item中,不删除,插入时候直接替换
-    item = STACK[*top--];
+    *item = STACK[*top--];
     return 1;
 
 }
