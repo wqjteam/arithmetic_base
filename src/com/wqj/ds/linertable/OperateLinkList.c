@@ -27,6 +27,8 @@ LinkList reverseLink(LinkList list);
 
 void printfLastKItem(LinkList list, int K);
 
+void reverseLink2(LinkList list);
+
 int main(int argc, char *argv[]) {
     /**
      * 创建内存LinkList
@@ -48,6 +50,14 @@ int main(int argc, char *argv[]) {
 
     LinkList f = reverseLink(a);
     printfLastKItem(f, 1);
+
+    /**
+     * 创建一个新的带头结点的循环表
+     * */
+    LinkList a2 = createCirculationLink(3);
+    LinkList list2 = (LinkList) malloc(sizeof(LNode));
+    list2->link = a2;
+    reverseLink2(list2);
 
 }
 
@@ -183,6 +193,19 @@ LinkList reverseLink(LinkList list) {
     }
 //    list = next;
     return next;
+}
+
+void reverseLink2(LinkList list) {
+    LinkList p, q, r;
+    q = list;
+    p = list->link;
+    while (list != p) {
+        r = q;
+        q = p;
+        p = p->link;
+        q->link = r;
+    }
+    list->link = r;
 }
 
 /**
