@@ -10,5 +10,11 @@ int main(int argc, char const *argv[])
         printf("%d\n",i);
         ++i;
     }
+    switch(1){
+        /**case 1:case 2 可以重叠*/
+        case 1:case 2:printf("12213");
+    };/** ;可加可不加*/
+
     return 0;
+
 }

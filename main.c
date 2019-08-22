@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "Bubble.h"
+
 /**
  * 在使用main函数的带参版本的时，最常用的就是：int main(int argc , char* argv[]）;
  * 变量名称argc和argv是常规的名称，当然也可以换成其他名称。
@@ -7,16 +8,25 @@
  * */
 int main(int argc, char *argv[]) {
     int i;
-    printf("Total %d arguments\n",argc);
+    printf("Total %d arguments\n", argc);
+    int num[3][3];
+    float z = 0;
+    z++;
+    printf("%f\n",z);
 
-    for(i = 0; i < argc; i++)
-    {
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; ++j) {
+
+            printf("%d\n", num[i][j]);
+        }
+    }
+    for (i = 0; i < argc; i++) {
 //        printf("\nArgument argv[%d]  = %s \n",i, argv[i]);
-        printf("\nArgument argv[%d]  = %s \n",i, *(argv++));
+        printf("\nArgument argv[%d]  = %s \n", i, *(argv++));
     }
 
     printf("Hello, World!\n");
     printf("1111哈哈\n");
-    printf("结果为=%d\n",add(10,3));
+    printf("结果为=%d\n", add(10, 3));
     return 0;
 }

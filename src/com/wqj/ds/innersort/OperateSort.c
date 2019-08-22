@@ -24,6 +24,13 @@ void heapSort(int k[], int n);
 
 int main(int argc, char *argv[]) {
 
+    double rear;
+    printf("\n");
+    scanf("%lf",&rear);
+    printf("%s\n",'a');
+    printf("%d\n",rear);
+
+    return 1;
     int k[] = {49, 38, 65, 97, 76, 13, 27, 79};
     printf("≤Â»Î≈≈–Ú:\n");
     INSERTSORT(k, 8);

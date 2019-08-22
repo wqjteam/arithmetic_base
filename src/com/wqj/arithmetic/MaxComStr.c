@@ -1,6 +1,6 @@
 /**
   * Created by wqj on 2019/8/22.
-  * description:
+  * description: 寻找两个字符串中最大的连续字符串
  */
 #include <stdio.h>
 #include <string.h>

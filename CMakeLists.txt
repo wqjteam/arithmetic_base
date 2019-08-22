@@ -39,3 +39,6 @@ add_executable(arithmetic_base_25 src/com/wqj/ds/tree/OperateTree.c header/Opera
 add_executable(arithmetic_base_26 src/com/wqj/ds/graph/OperateGraph.c header/OperateGraph.h src/com/wqj/ds/graph/TraverseTree.c src/com/wqj/ds/graph/MinTreeAndMinPath.c)
 add_executable(arithmetic_base_27 src/com/wqj/ds/search/OperatetSeacher.c)
 add_executable(arithmetic_base_28 src/com/wqj/ds/innersort/OperateSort.c)
+
+
+add_executable(arithmetic_base_29 src/com/wqj/arithmetic/MaxComStr.c)
