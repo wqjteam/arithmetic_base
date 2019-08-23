@@ -8,12 +8,20 @@
 void main() {
 
     char str[100] = "aaabbccddeeffgggghhhhiiij", temp;
+    char str3[][10] = {"aaa", "bbcc", "ffgggg"};
+    char str4[] = "asd";
+    int b1 = sizeof(str4);
+    int a = sizeof(str3);
+    int a2 = sizeof(str3[0]);
+    int a3 = sizeof(str3[1]);
+    int a4 = strlen(str3[0]);
+
     /**
      * 证明用*str生成就是final的变量
      * */
-//    char *str2 = "asertytyt111";
-//    strcpy(str2,str);
-//    strcpy(str2,"asertytyt");
+    char str2[] = "asertytyt111";
+//   strcpy(str3,str);
+//    strcmp(str3,"asertytyt");
 //    *str2 = 'z';
 //    str2[0] = 'z';
     int index;
@@ -46,7 +54,7 @@ void main() {
             str[count] = str[k];
         }
     }
-    str[count+1] = '\0';
+    str[count + 1] = '\0';
     puts(str);
 
 }
