@@ -269,7 +269,7 @@ void recursionQuickSort(int k[], int low, int high) {
          * 将大于他的关键词放在左边
          * */
         while (i < j) {
-            while (j > i && k[j] >= temp) --j;
+            while (i < j  && k[j] >= temp) --j;
             /**
              * 处理小于他的关键词
              * */

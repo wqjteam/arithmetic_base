@@ -42,3 +42,4 @@ add_executable(arithmetic_base_28 src/com/wqj/ds/innersort/OperateSort.c)
 
 
 add_executable(arithmetic_base_29 src/com/wqj/arithmetic/MaxComStr.c)
+add_executable(arithmetic_base_30 src/com/wqj/arithmetic/SortAndRemoveDuplicates.c)
