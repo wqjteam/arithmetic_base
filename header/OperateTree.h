@@ -52,6 +52,8 @@ void inOrder2(BiTree tree);
 
 void backOrder2(BiTree tree);
 
+void postOrder3(BiTree T);
+
 BiTree createIndexTree(int *data, int n);
 
 BiTree deleteBiTree(BiTree root, int qdata);

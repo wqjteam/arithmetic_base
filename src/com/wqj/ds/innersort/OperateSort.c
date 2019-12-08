@@ -16,6 +16,8 @@ void SHELLSORT(int k[], int n);
 
 void recursionQuickSort(int k[], int low, int high);
 
+void recursionQuickSort2(int k[], int low, int high);
+
 void QuickSort(int k[], int n);
 
 void sift(int k[], int low, int high);
@@ -26,11 +28,8 @@ int main(int argc, char *argv[]) {
 
     double rear;
     printf("\n");
-    scanf("%lf",&rear);
-    printf("%s\n",'a');
-    printf("%d\n",rear);
 
-    return 1;
+
     int k[] = {49, 38, 65, 97, 76, 13, 27, 79};
     printf("插入排序:\n");
     INSERTSORT(k, 8);
@@ -73,13 +72,20 @@ int main(int argc, char *argv[]) {
 
 
     printf("\n\n\n");
-    int k6[] = {49, 38, 65, 97, 76, 13, 27, 79};
+    int k6[] = {49, 38, 65, 97,49,49, 76, 13, 27, 49,79,49};
     printf("递归快速排序:\n");
-    recursionQuickSort(k6, 0, 7);
-    for (int i = 0; i < 8; ++i) {
+    recursionQuickSort(k6, 0, 11);
+    for (int i = 0; i < 12; ++i) {
         printf(" %d", k6[i]);
     }
-
+    printf("\n\n\n");
+    int k9[] = {49, 38, 65, 97,49,49, 76, 13, 27, 49,79,49};
+    printf("递归快速排序2:\n");
+    recursionQuickSort2(k9, 0, 11);
+    for (int i = 0; i < 12; ++i) {
+        printf(" %d", k9[i]);
+    }
+    return 1;
 
     printf("\n\n\n");
     int k7[] = {49, 38, 65, 97, 76, 13, 27, 79};
@@ -254,45 +260,44 @@ void SHELLSORT(int k[], int n) {
 }
 
 
+
 /**
  * 递归快速排序
  * */
-void recursionQuickSort(int k[], int low, int high) {
+void recursionQuickSort2(int k[], int low, int high) {
     int temp;
     int i = low, j = high;
     if (low < high) {
-        temp = k[low];
         /**
          * 指定两个浮标 i j 分为在头部和尾部
          * 以第一个关键词的值为分界点
          * 将小于他的关键词放在右边
          * 将大于他的关键词放在左边
          * */
-        while (i < j) {
-            while (i < j  && k[j] >= temp) --j;
-            /**
-             * 处理小于他的关键词
-             * */
-            if (i < j) {
-                k[i] = k[j];
-                i++;
-            }
-            while (i < j && k[i] < temp) ++i;
+        while (1) {
+
+            while (low < j && k[j] >= k[low]) --j;
+            while (i < high && k[i] < k[low]) ++i;
             /**
              * 处理大于他的关键词
              * */
             if (i < j) {
+                temp = k[j];
                 k[j] = k[i];
-                --j;
+                k[i] = temp;
 
+            } else {
+                break;
             }
         }
-        k[i] = temp;
         /**
-         * 用j+1还是i+1都是一样的
-         * */
-        recursionQuickSort(k, low, i - 1);
-        recursionQuickSort(k, i + 1, high);
+        * 用j+1还是i+1都是一样的
+        * */
+        temp = k[low];
+        k[low] = k[j];
+        k[j] = temp;
+        recursionQuickSort2(k, low, i - 1);
+        recursionQuickSort2(k, i + 1, high);
     }
 }
 
@@ -353,6 +358,50 @@ void QuickSort(int k[], int n) {
 
     }
 }
+
+
+/**
+ * 递归快速排序
+ * */
+void recursionQuickSort(int k[], int low, int high) {
+    int temp;
+    int i = low, j = high;
+    if (low < high) {
+        temp = k[low];
+        /**
+         * 指定两个浮标 i j 分为在头部和尾部
+         * 以第一个关键词的值为分界点
+         * 将小于他的关键词放在右边
+         * 将大于他的关键词放在左边
+         * */
+        while (i < j) {
+            while (i < j && k[j] >= temp) --j;
+            /**
+             * 处理小于他的关键词
+             * */
+            if (i < j) {
+                k[i] = k[j];
+                i++;
+            }
+            while (i < j && k[i] < temp) ++i;
+            /**
+             * 处理大于他的关键词
+             * */
+            if (i < j) {
+                k[j] = k[i];
+                --j;
+
+            }
+        }
+        k[i] = temp;
+        /**
+         * 用j+1还是i+1都是一样的
+         * */
+        recursionQuickSort(k, low, i - 1);
+        recursionQuickSort(k, i + 1, high);
+    }
+}
+
 
 
 /**

@@ -3,6 +3,7 @@
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8" addBOMForNewFiles="with NO BOM">
     <file url="file://$PROJECT_DIR$/Bubble.c" charset="GBK" />
     <file url="file://$PROJECT_DIR$/main.c" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/wqj/arithmetic/TestUnit.c" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/com/wqj/c/base/circle.c" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/com/wqj/c/base/define.c" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/com/wqj/c/base/power.c" charset="GBK" />
@@ -23,6 +24,7 @@
     <file url="file://$PROJECT_DIR$/src/com/wqj/ds/linertable/OperateLiner.c" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/com/wqj/ds/linertable/OperateLinkList.c" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/com/wqj/ds/tree/OperateTree.c" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/wqj/ds/tree/TraverseTree.c" charset="GBK" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

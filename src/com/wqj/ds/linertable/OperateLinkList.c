@@ -59,6 +59,22 @@ int main(int argc, char *argv[]) {
     list2->link = a2;
     reverseLink2(list2);
 
+
+    LinkList ar = createLink(10);
+    LinkList temp1 = ar, temp2, temp3 = NULL;
+    while (temp1 != NULL) {
+        temp2 = temp1;
+        temp1 = temp1->link;
+        temp2->link = temp3;
+        temp3 = temp2;
+    }
+    temp2;
+
+    while (temp2!=NULL){
+        printf("%d",temp2->data);
+        temp2=temp2->link;
+    }
+
 }
 
 LinkList createLink(int n) {

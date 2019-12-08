@@ -20,7 +20,7 @@ typedef struct {
     int age;
     char name[20];
     birthday by;
-} student;
+} student, *p;
 
 
 /**
@@ -46,11 +46,15 @@ typedef struct {
     int age;
 } person;
 
+void modify(student *a) {
+    printf(a->name);
+}
 
 void main() {
 
     birthday d1 = {2, 11, 2019, 20190210, "张三"};
-    student s1 = {20, "asdasdasd", d1};
+    student s1[4] = {10, "asdasdasd", d1, 20, "asdasdasd", d1}, *p;
+    modify(&s1[0]);
     birthday *d1_p = &d1;
     //成员变量引用方式
 //    1)  结构体变量名.成员名

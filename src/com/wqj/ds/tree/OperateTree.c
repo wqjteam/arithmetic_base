@@ -38,6 +38,8 @@ int main(int argc, char *argv[]) {
     backOrder(tree);
     printf("\n后序2:\n");
     backOrder2(tree);
+    printf("\n后序3:\n");
+    postOrder3(tree);
 
     printf("\n\n一下为创建广义二叉树表:\n\n\n\n");
     char generalizedList[] = "1(2(3),4(5(,6),7))@";
@@ -256,7 +258,7 @@ BiTree createGeneralizedTree(char *tree) {
                  * 是否存在
                  * */
                 temp = (BiTree) malloc(sizeof(BiNode));
-                temp->data = *tree-'0';
+                temp->data = *tree - '0';
                 temp->left = NULL;
                 temp->right = NULL;
                 pre = temp;
